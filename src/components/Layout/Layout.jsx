@@ -1,11 +1,11 @@
-import { Outlet } from "react-router";
-import { Link, NavLink } from "react-router-dom";
+import { Outlet } from 'react-router';
+import { Link, NavLink } from 'react-router-dom';
 
-import { Asd } from "./layuot.styled";
+import { Asd } from './layuot.styled';
 
 export const Layout = () => {
   return (
-    <div>
+    <div className="container">
       <Link to="/">Home Page</Link>
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/register">Register</NavLink>
