@@ -1,5 +1,11 @@
+import DailyCaloriesForm from 'components/DailyCaloriesForm/DailyCaloriesForm';
+
 const Diary = () => {
-  return <div>Diary</div>;
+  return (
+    <div>
+      <DailyCaloriesForm />
+    </div>
+  );
 };
 
 export default Diary;

@@ -1,5 +1,12 @@
+import DailyCaloriesForm from 'components/DailyCaloriesForm/DailyCaloriesForm';
+import BackgroundWrapper from 'components/Background/BackgroundWrapper.styled';
+
 const HomePage = () => {
-  return <div>Home Page</div>;
+  return (
+    <BackgroundWrapper>
+      <DailyCaloriesForm />
+    </BackgroundWrapper>
+  );
 };
 
 export default HomePage;
