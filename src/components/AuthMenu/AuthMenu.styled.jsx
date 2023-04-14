@@ -14,6 +14,7 @@ export const Navlink = styled(NavLink)`
 `;
 export const Wrapper = styled.div`
   display: flex;
+
   @media screen and (min-width: 1280px) {
     padding-left: 20px;
     border-left: 1px solid var(--gray-text-color);

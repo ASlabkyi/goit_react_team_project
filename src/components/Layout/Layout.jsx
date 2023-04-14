@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router';
 import { Header } from './layuot.styled';
 import { Navigation } from 'components/Navigation/Navigation';
+import { UserMobileMenu } from 'components/UserMenu/UserMobileMenu';
 
 export const Layout = () => {
   return (
@@ -8,6 +9,7 @@ export const Layout = () => {
       <Header>
         <Navigation />
       </Header>
+      <UserMobileMenu />
       <main>
         <Outlet />
       </main>

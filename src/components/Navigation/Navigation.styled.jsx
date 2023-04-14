@@ -49,7 +49,24 @@ export const Mom = styled.span`
 `;
 
 export const NavigWraper = styled.div`
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (min-width: 768px) {
+    justify-content: space-between;
+  }
+  @media (min-width: 1280px) {
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+`;
+export const LogoWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  @media (min-width: 1280px) {
+    margin-right: 10px;
+    align-items: flex-end;
+  }
 `;

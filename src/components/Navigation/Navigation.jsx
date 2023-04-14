@@ -11,8 +11,8 @@ export const Navigation = () => {
       <NavLink to="/">
         <Logo />
       </NavLink>
-      <AuthMenu />
-      {/* <UserMenu /> */}
+      {/* <AuthMenu /> */}
+      <UserMenu />
     </NavigWraper>
   );
 };

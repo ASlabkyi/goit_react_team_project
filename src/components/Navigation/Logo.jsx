@@ -1,9 +1,14 @@
 import React from 'react';
-import { Logotype, Slim, Mom } from 'components/Navigation/Navigation.styled';
+import {
+  Logotype,
+  Slim,
+  Mom,
+  LogoWrapper,
+} from 'components/Navigation/Navigation.styled';
 
 export const Logo = () => {
   return (
-    <div>
+    <LogoWrapper>
       <Logotype
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -32,6 +37,6 @@ export const Logo = () => {
       </Logotype>
       <Slim>Slim</Slim>
       <Mom>Mom</Mom>
-    </div>
+    </LogoWrapper>
   );
 };

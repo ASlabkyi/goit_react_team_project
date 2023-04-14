@@ -1,14 +1,27 @@
-import { NavLink } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
+
+import { Wrapper } from 'components/AuthMenu/AuthMenu.styled';
+import { BurgerMenu, Exit, Nic, NavliNk, UserWraper } from './UserMenu.styled';
 
 export const UserMenu = () => {
   return (
-    <div>
-      <NavLink to="/diary">Diary</NavLink>
-      <NavLink to="/calculator">Calculator</NavLink>
-      <GiHamburgerMenu />
-      <p>Nic</p>
-      <button>LogOut</button>
-    </div>
+    <UserWraper>
+      <Wrapper>
+        <NavliNk to="/diary">Diary</NavliNk>
+        <NavliNk to="/calculator">Calculator</NavliNk>
+        <BurgerMenu>
+          {' '}
+          <GiHamburgerMenu />
+        </BurgerMenu>
+      </Wrapper>
+
+      <div>
+        {' '}
+        <div>
+          <Nic>Nic</Nic>
+          <Exit>Exit</Exit>
+        </div>
+      </div>
+    </UserWraper>
   );
 };
