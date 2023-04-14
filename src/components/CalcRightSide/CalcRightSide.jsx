@@ -1,4 +1,6 @@
 import { Box, useMediaQuery } from '@mui/material';
+import imageDesktop from '../../images/bg-pictures/desktop/side-bar-leaves.png';
+import imageTablet from '../../images/bg-pictures/tablet/sideBarLeaves768_1x.png';
 
 const CalcRightSide = () => {
   const isTablet = useMediaQuery('(min-width:768px) and (max-width:1279px)');
@@ -15,6 +17,11 @@ const CalcRightSide = () => {
   let minHeight = '433px';
   let listWidth = '280px';
   let mainGap = '40px';
+  let image = null;
+  let bgImageWidth = '0';
+  let bgImageHeight = '0';
+  let bgImageTop = '0';
+  let bgImageLeft = '0';
 
   if (isTablet) {
     mainFlexDirection = 'row';
@@ -26,6 +33,11 @@ const CalcRightSide = () => {
     minHeight = '326px';
     listWidth = '288px';
     mainGap = '80px';
+    image = imageTablet;
+    bgImageWidth = '602px';
+    bgImageHeight = '428px';
+    bgImageTop = '-36px';
+    bgImageLeft = '399px';
   }
 
   if (isDisktop) {
@@ -37,6 +49,11 @@ const CalcRightSide = () => {
     minHeight = '850px';
     listWidth = '288px';
     mainGap = '60px';
+    image = imageDesktop;
+    bgImageWidth = '740px';
+    bgImageHeight = '740px';
+    bgImageTop = '35px';
+    bgImageLeft = '12px';
   }
 
   return (
@@ -129,8 +146,20 @@ const CalcRightSide = () => {
             <p>Your diet will be displayed here</p>
           )}
         </Box>
-        <Box></Box>
       </Box>
+
+      <div
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundRepeat: 'no-repeat',
+          width: bgImageWidth,
+          height: bgImageHeight,
+          position: 'absolute',
+          top: bgImageTop,
+          left: bgImageLeft,
+        }}
+      ></div>
+
       {/* <Box
         sx={{
           width: '100px',
