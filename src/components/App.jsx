@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router';
-
 import { Layout } from 'components/Layout/Layout';
+
+import CalcRightSide from './CalcRightSide/CalcRightSide';
 
 export const App = () => {
   return (
@@ -14,7 +15,7 @@ export const App = () => {
 
         <Route path="/diary" element={<div>Diary</div>} />
 
-        <Route path="/calculator" element={<div>Calculator</div>} />
+        <Route path="/calculator" element={<CalcRightSide />} />
       </Route>
     </Routes>
   );
