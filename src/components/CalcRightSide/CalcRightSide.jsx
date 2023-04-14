@@ -129,6 +129,7 @@ const CalcRightSide = () => {
             <p>Your diet will be displayed here</p>
           )}
         </Box>
+        <Box></Box>
       </Box>
       {/* <Box
         sx={{
