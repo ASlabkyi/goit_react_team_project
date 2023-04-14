@@ -2,6 +2,7 @@ import { Outlet } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
 
 import { Asd } from './layuot.styled';
+import { Suspense } from 'react';
 
 export const Layout = () => {
   return (
@@ -13,7 +14,9 @@ export const Layout = () => {
       <NavLink to="/calculator">Calculator</NavLink>
       <Asd>asfgcadc</Asd>
       <main>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );
