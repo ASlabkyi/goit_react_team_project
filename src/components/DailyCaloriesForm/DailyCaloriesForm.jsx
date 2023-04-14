@@ -152,15 +152,14 @@ const DailyCaloriesForm = () => {
                       </FormControl>
                   </Box>
                 </Box>
-            
-                <Box
+            </Box>
+            <Box
                     sx={{
                         display: 'flex',
                         justifyContent: {
                         xs: 'center',
                         sm: 'center',
                         md: 'flex-start',
-                        lg: 'flex-end',
                         },
                     }}
                     >
@@ -170,6 +169,10 @@ const DailyCaloriesForm = () => {
                         width: '210px',
                         height: '43px',
                         marginTop: '30px',
+                        marginLeft: {
+                            md: '32px',
+                            lg: '339px',
+                        },
                         background: '#FC842D',
                         boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
                         borderRadius: '30px',
@@ -190,7 +193,6 @@ const DailyCaloriesForm = () => {
                         Start losing weight
                     </Button>
                 </Box>
-            </Box>
         </Box>
   </>
   );
