@@ -1,22 +1,17 @@
 import { useDispatch } from 'react-redux';
-import * as yup from 'yup';
 import { Box } from '@mui/material';
+import * as yup from 'yup';
 import { Formik } from 'formik';
 import {
-  FormRegister,
+  FormLogIn,
   Input,
   LoginBtn,
   RegisterBtn,
   Title,
-} from './RegistrationForm.styled.js';
-import { register } from 'redux/auth/operations.js';
+} from './LoginForm.styled';
+import { login } from 'redux/auth/operations';
 
 const schema = yup.object().shape({
-  name: yup
-    .string()
-    .required(
-      "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles d'Artagnan"
-    ),
   email: yup
     .string()
     .email('Invalid type of email')
@@ -30,38 +25,29 @@ const schema = yup.object().shape({
     .required('Password is required'),
 });
 
-const Register = () => {
+const Login = () => {
   const initialValues = {
-    username: '',
     email: '',
     password: '',
   };
 
   const dispatch = useDispatch();
 
-  const handleSubmitRegister =  (values, { resetForm }) => {
-    const newUser = {
-      username: values.name,
-      email: values.email,
-      password: values.password,
-    };
-
-   dispatch(register(newUser));
-    
-
+  const handleSubmit = (values, { resetForm }) => {
+    dispatch(login(values));
     resetForm();
   };
 
   return (
     <>
-      <Title>REGISTER</Title>
+      <Title>LOG IN</Title>
       <Formik
         initialValues={initialValues}
-        onSubmit={handleSubmitRegister}
+        onSubmit={handleSubmit}
         validationSchema={schema}
       >
         {({ values, handleChange, handleBlur }) => (
-          <FormRegister>
+          <FormLogIn autoComplete="off">
             <Box
               sx={{
                 display: 'flex',
@@ -72,33 +58,25 @@ const Register = () => {
               }}
             >
               <Input
-                type="name"
-                name="name"
-                label="Name"
-                variant="standard"
-                value={values.name}
-                required
-                onBlur={handleBlur}
-                onChange={handleChange}
-              ></Input>
-              <Input
                 type="email"
                 name="email"
                 label="Email"
                 variant="standard"
-                value={values.email}
                 required
+                placeholder="example@mail.com"
                 onBlur={handleBlur}
                 onChange={handleChange}
+                value={values.email}
               ></Input>
               <Input
                 type="password"
                 name="password"
                 label="Password"
                 variant="standard"
-                value={values.password}
                 required
                 autoComplete="off"
+                placeholder="Min 8 characters"
+                value={values.password}
                 onBlur={handleBlur}
                 onChange={handleChange}
               ></Input>
@@ -112,21 +90,21 @@ const Register = () => {
                 mt: '60px',
               }}
             >
-              <RegisterBtn type="submit" variant="contained">
-                Register
-              </RegisterBtn>
-              <LoginBtn
-                type="submit"
-                variant="outlined"
-                href="/goit_react_team_project/login"
-              >
+              <LoginBtn type="submit" variant="contained">
                 Log in
               </LoginBtn>
+              <RegisterBtn
+                type="submit"
+                variant="outlined"
+                href="/goit_react_team_project/register"
+              >
+                Register
+              </RegisterBtn>
             </Box>
-          </FormRegister>
+          </FormLogIn>
         )}
       </Formik>
     </>
   );
 };
-export default Register;
+export default Login;
