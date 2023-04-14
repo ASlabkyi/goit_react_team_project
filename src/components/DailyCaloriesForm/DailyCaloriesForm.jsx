@@ -177,3 +177,23 @@ const DailyCaloriesForm = () => {
                         fontFamily: 'Verdana',
                             fontWeight: 700,
                             fontSize: '14px',
+                            lineHeight: '17px',
+                            letterSpacing: {
+                              xs: '0.04em',
+                              sm: 'unset'
+                            },
+                        '&:hover': {
+                            background: '#FC842D',
+                        },
+                        }}
+                        >
+                        Start losing weight
+                    </Button>
+                </Box>
+            </Box>
+        </Box>
+  </>
+  );
+};
+
+export default DailyCaloriesForm;
