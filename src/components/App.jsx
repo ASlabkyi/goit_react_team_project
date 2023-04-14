@@ -1,20 +1,26 @@
 import { Routes, Route } from 'react-router';
-
 import { Layout } from 'components/Layout/Layout';
+import { lazy } from 'react';
+
+const Calculator = lazy(() => import('../pages/Calculator/Calculator'));
+const Diary = lazy(() => import('../pages/Diary/Diary'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const Login = lazy(() => import('../pages/Login/Login'));
+const Registration = lazy(() => import('../pages/Registration/Registration'));
 
 export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<div>Homepage</div>} />
+        <Route index element={<HomePage />} />
 
-        <Route path="/login" element={<div>Login</div>} />
+        <Route path="/login" element={<Login />} />
 
-        <Route path="/register" element={<div>Register</div>} />
+        <Route path="/register" element={<Registration />} />
 
-        <Route path="/diary" element={<div>Diary</div>} />
+        <Route path="/diary" element={<Diary />} />
 
-        <Route path="/calculator" element={<div>Calculator</div>} />
+        <Route path="/calculator" element={<Calculator />} />
       </Route>
     </Routes>
   );

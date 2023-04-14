@@ -1,3 +1,11 @@
-export const Calculator = () => {
-  return <div>Calculator</div>;
+import CalcRightSide from 'components/CalcRightSide/CalcRightSide';
+
+const Calculator = () => {
+  return (
+    <div>
+      <CalcRightSide />
+    </div>
+  );
 };
+
+export default Calculator;

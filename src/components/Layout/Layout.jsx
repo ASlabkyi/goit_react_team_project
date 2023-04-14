@@ -11,7 +11,9 @@ export const Layout = () => {
       </Header>
       <UserMobileMenu />
       <main>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );
