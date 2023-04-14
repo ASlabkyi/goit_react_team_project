@@ -1,12 +1,13 @@
 import { Routes, Route } from 'react-router';
 
 import { Layout } from 'components/Layout/Layout';
+import HomePage from 'pages/HomePage/HomePage';
 
 export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<div>Homepage</div>} />
+        <Route index element={<HomePage/>} />
 
         <Route path="/login" element={<div>Login</div>} />
 
