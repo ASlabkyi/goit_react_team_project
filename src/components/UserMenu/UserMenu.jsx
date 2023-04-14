@@ -1,27 +1,45 @@
 import { GiHamburgerMenu } from 'react-icons/gi';
-
+import { NavLink } from 'react-router-dom';
+import { Logo } from 'components/Navigation/Logo';
 import { Wrapper } from 'components/AuthMenu/AuthMenu.styled';
-import { BurgerMenu, Exit, Nic, NavliNk, UserWraper } from './UserMenu.styled';
+import {
+  BurgerMenu,
+  Exit,
+  Nic,
+  NavliNk,
+  UserDesktopWrapper,
+  UserWraper,
+  UserMenuWrap,
+} from './UserMenu.styled';
+import { UserMobileMenu } from './UserMobileMenu';
 
 export const UserMenu = () => {
   return (
-    <UserWraper>
-      <Wrapper>
-        <NavliNk to="/diary">Diary</NavliNk>
-        <NavliNk to="/calculator">Calculator</NavliNk>
-        <BurgerMenu>
-          {' '}
-          <GiHamburgerMenu />
-        </BurgerMenu>
-      </Wrapper>
+    <>
+      <UserMenuWrap>
+        <NavLink to="/">
+          <Logo />
+        </NavLink>
+        <UserWraper>
+          <Wrapper>
+            <NavliNk to="/diary">Diary</NavliNk>
+            <NavliNk to="/calculator">Calculator</NavliNk>
+            <BurgerMenu>
+              {' '}
+              <GiHamburgerMenu />
+            </BurgerMenu>
+          </Wrapper>
 
-      <div>
-        {' '}
-        <div>
-          <Nic>Nic</Nic>
-          <Exit>Exit</Exit>
-        </div>
-      </div>
-    </UserWraper>
+          <div>
+            {' '}
+            <UserDesktopWrapper>
+              <Nic>Nic</Nic>
+              <Exit>Exit</Exit>
+            </UserDesktopWrapper>
+          </div>
+        </UserWraper>
+      </UserMenuWrap>
+      <UserMobileMenu />
+    </>
   );
 };

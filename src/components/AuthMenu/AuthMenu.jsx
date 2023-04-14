@@ -1,10 +1,17 @@
-import { Navlink, Wrapper } from './AuthMenu.styled';
+import { Navlink, Wrapper, NavAuth } from './AuthMenu.styled';
+import { NavLink } from 'react-router-dom';
+import { Logo } from 'components/Navigation/Logo';
 
 export const AuthMenu = () => {
   return (
-    <Wrapper>
-      <Navlink to="/login">LOG IN</Navlink>
-      <Navlink to="/register">REGISTRATION</Navlink>
-    </Wrapper>
+    <NavAuth>
+      <NavLink to="/">
+        <Logo />
+      </NavLink>
+      <Wrapper>
+        <Navlink to="/login">LOG IN</Navlink>
+        <Navlink to="/register">REGISTRATION</Navlink>
+      </Wrapper>
+    </NavAuth>
   );
 };

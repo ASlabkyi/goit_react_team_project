@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router';
 import { Header } from './layuot.styled';
 import { Navigation } from 'components/Navigation/Navigation';
-import { UserMobileMenu } from 'components/UserMenu/UserMobileMenu';
+
+import { Suspense } from 'react';
 
 export const Layout = () => {
   return (
@@ -9,7 +10,7 @@ export const Layout = () => {
       <Header>
         <Navigation />
       </Header>
-      <UserMobileMenu />
+
       <main>
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
