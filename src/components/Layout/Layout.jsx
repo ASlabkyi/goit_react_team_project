@@ -2,13 +2,11 @@ import { Outlet } from 'react-router';
 import { Header } from './layuot.styled';
 import { Navigation } from 'components/Navigation/Navigation';
 
-import BackgroundWrapper from 'components/Background/BackgroundWrapper.styled';
-
 import { Suspense } from 'react';
 
 export const Layout = () => {
   return (
-    <BackgroundWrapper>
+    <div>
       <Header>
         <Navigation />
       </Header>
@@ -18,6 +16,6 @@ export const Layout = () => {
           <Outlet />
         </Suspense>
       </main>
-    </BackgroundWrapper>
+    </div>
   );
 };
