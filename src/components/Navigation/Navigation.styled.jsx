@@ -26,7 +26,6 @@ export const Slim = styled.span`
 
     color: #212121;
     letter-spacing: 0.06em;
-    color: var(--orange-color);
   }
   @media (min-width: 1280px) {
   }
@@ -41,7 +40,7 @@ export const Mom = styled.span`
     line-height: 1.2;
     font-size: 24px;
 
-    color: #fc842d;
+    color: var(--orange-color);
     letter-spacing: 0.06em;
   }
   @media (min-width: 1280px) {

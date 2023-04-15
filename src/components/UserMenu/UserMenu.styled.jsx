@@ -43,6 +43,7 @@ export const NicMenuWrapper = styled.div`
   border-top: 1px solid var(--gray-text-color);
   padding-left: 20px;
   padding-top: 8px;
+  width: 100vw;
   @media (min-width: 768px) {
     display: none;
   }
@@ -125,5 +126,31 @@ export const MobileLink = styled.div`
 
 export const Mobilelist = styled.div`
   display: flex;
+  position: absolute;
+  flex-direction: column;
+  padding-top: 20px;
+  gap: 15px;
+  z-index: 100;
+  width: 100vw;
+  height: 100%;
+  align-items: center;
   background-color: var(--violet-bg-color);
+  @media (min-width: 768px) {
+    padding-top: 40px;
+    gap: 25px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
+`;
+export const LinkMobile = styled(NavLink)`
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--gray-text-color);
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+  &.active {
+    color: var(--white-color);
+  }
 `;
