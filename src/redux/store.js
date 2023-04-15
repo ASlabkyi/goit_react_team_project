@@ -10,7 +10,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { configureStore } from '@reduxjs/toolkit';
-import { authSlice } from './auth/authSlice';
+import { authReducer } from './auth/authSlice';
 import { dailyRateSlice } from './dailyRate/dailyRateSlice';
 import { productSlice } from './product/productsSlice';
 import { dayInfoSlice } from './dayInfo/dayInfoSlice';
@@ -22,7 +22,7 @@ const persistConfig = {
   whitelist: ['token'],
 };
 
-const persistedReducer = persistReducer(persistConfig, authSlice.reducer);
+const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {

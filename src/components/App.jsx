@@ -1,4 +1,7 @@
 import { Routes, Route } from 'react-router';
+
+import Register from './RegistrationForm/RegistrationForm';
+
 import { Layout } from 'components/Layout/Layout';
 import { lazy } from 'react';
 
@@ -14,9 +17,9 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
 
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login/>} />
 
-        <Route path="/register" element={<Registration />} />
+        <Route path="/register" element={<Register/>} />
 
         <Route path="/diary" element={<Diary />} />
 
