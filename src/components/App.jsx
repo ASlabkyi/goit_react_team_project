@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router';
-import Login from './LoginForm/LoginForm';
+
 import Register from './RegistrationForm/RegistrationForm';
 
 import { Layout } from 'components/Layout/Layout';

@@ -41,7 +41,7 @@ const Register = () => {
 
   const handleSubmitRegister =  (values, { resetForm }) => {
     const newUser = {
-      username: values.name,
+      name: values.name,
       email: values.email,
       password: values.password,
     };
