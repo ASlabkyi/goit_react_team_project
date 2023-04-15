@@ -67,15 +67,15 @@ export const Exit = styled.button`
   }
 `;
 export const Nic = styled.p`
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
   line-height: 1.2;
   font-weight: 700;
   font-size: 14px;
   color: var(--black-color);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   margin-right: 20px;
   line-height: 17px;
-  letter-spacing: 4%;
+
   @media (min-width: 768px) {
     font-size: 17px;
   }
