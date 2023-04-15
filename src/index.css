@@ -6,6 +6,7 @@
   --gray-text-color: #9b9faa;
   --gray-bg-color: #f0f1f3;
   --violet-bg-color: #264061;
+  --violet-bg-color: #264061;
   --orange-color: #fc842d;
 
   --mobile: 320px;
@@ -18,6 +19,7 @@
   font-style: normal;
   font-weight: 400;
   src: url('./baseStyles/font/Verdana.woff2') format('woff2');
+  src: url('./baseStyles/font/Verdana.woff2') format('woff2');
 }
 
 @font-face {
@@ -25,10 +27,12 @@
   font-style: normal;
   font-weight: 700;
   src: url('./baseStyles/font/Verdana.woff2') format('woff2');
+  src: url('./baseStyles/font/Verdana.woff2') format('woff2');
 }
 
 body {
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Verdana', sans-serif;
   font-family: -apple-system, BlinkMacSystemFont, 'Verdana', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

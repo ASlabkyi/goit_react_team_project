@@ -25,7 +25,7 @@ const schema = yup.object().shape({
     .required('Password is required'),
 });
 
-const Login = () => {
+const LoginForm = () => {
   const initialValues = {
     email: '',
     password: '',
@@ -107,4 +107,4 @@ const Login = () => {
     </>
   );
 };
-export default Login;
+export default LoginForm;

@@ -32,7 +32,7 @@ const schema = yup.object().shape({
 
 const Register = () => {
   const initialValues = {
-    username: '',
+    name: '',
     email: '',
     password: '',
   };
@@ -41,7 +41,7 @@ const Register = () => {
 
   const handleSubmitRegister =  (values, { resetForm }) => {
     const newUser = {
-      username: values.name,
+      name: values.name,
       email: values.email,
       password: values.password,
     };

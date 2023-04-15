@@ -1,10 +1,8 @@
 import { Routes, Route } from 'react-router';
-<<<<<<< HEAD
 import Login from './LoginForm/LoginForm';
+
 import Register from './RegistrationForm/RegistrationForm';
 
-=======
->>>>>>> a219e145141ee454dd81d9262a12853b00d04871
 import { Layout } from 'components/Layout/Layout';
 import { lazy } from 'react';
 
@@ -20,15 +18,9 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
 
-<<<<<<< HEAD
-        <Route path="/login" element={<Login/>} />
-
-        <Route path="/register" element={<Register/>} />
-=======
         <Route path="/login" element={<Login />} />
 
-        <Route path="/register" element={<Registration />} />
->>>>>>> a219e145141ee454dd81d9262a12853b00d04871
+        <Route path="/register" element={<Register />} />
 
         <Route path="/diary" element={<Diary />} />
 
