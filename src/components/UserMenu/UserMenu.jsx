@@ -11,9 +11,18 @@ import {
   UserWraper,
   UserMenuWrap,
 } from './UserMenu.styled';
+import { IoClose } from 'react-icons/io5';
 import { UserMobileMenu } from './UserMobileMenu';
+import { MobileList } from './UserMobileList';
+import { useState } from 'react';
 
 export const UserMenu = () => {
+  const [isOpenMenu, setOpenMenu] = useState(false);
+
+  const handleOpenMenu = e => {
+    e.preventDefault();
+    return setOpenMenu(!isOpenMenu);
+  };
   return (
     <>
       <UserMenuWrap>
@@ -24,10 +33,16 @@ export const UserMenu = () => {
           <Wrapper>
             <NavliNk to="/diary">Diary</NavliNk>
             <NavliNk to="/calculator">Calculator</NavliNk>
-            <BurgerMenu>
-              {' '}
-              <GiHamburgerMenu />
-            </BurgerMenu>
+            {!isOpenMenu ? (
+              <BurgerMenu type="button" onClick={handleOpenMenu}>
+                {' '}
+                <GiHamburgerMenu />
+              </BurgerMenu>
+            ) : (
+              <BurgerMenu type="button" onClick={handleOpenMenu}>
+                <IoClose />
+              </BurgerMenu>
+            )}
           </Wrapper>
 
           <div>
@@ -39,7 +54,8 @@ export const UserMenu = () => {
           </div>
         </UserWraper>
       </UserMenuWrap>
-      <UserMobileMenu />
+      <UserMobileMenu onCloseOpen={handleOpenMenu} />
+      {isOpenMenu && <MobileList />}
     </>
   );
 };
