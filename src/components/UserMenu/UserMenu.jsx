@@ -55,7 +55,7 @@ export const UserMenu = () => {
         </UserWraper>
       </UserMenuWrap>
       <UserMobileMenu onCloseOpen={handleOpenMenu} />
-      {isOpenMenu && <MobileList />}
+      {isOpenMenu && <MobileList onCloseOpen={handleOpenMenu} />}
     </>
   );
 };
