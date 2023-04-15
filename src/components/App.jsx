@@ -1,7 +1,4 @@
 import { Routes, Route } from 'react-router';
-import Login from './LoginForm/LoginForm';
-
-import Register from './RegistrationForm/RegistrationForm';
 
 import { Layout } from 'components/Layout/Layout';
 import { lazy } from 'react';
@@ -20,7 +17,7 @@ export const App = () => {
 
         <Route path="/login" element={<Login />} />
 
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Registration />} />
 
         <Route path="/diary" element={<Diary />} />
 

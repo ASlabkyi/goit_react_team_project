@@ -39,15 +39,14 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmitRegister =  (values, { resetForm }) => {
+  const handleSubmitRegister = (values, { resetForm }) => {
     const newUser = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
-
-   dispatch(register(newUser));
-    
+    console.log(newUser);
+    dispatch(register(newUser));
 
     resetForm();
   };
