@@ -15,8 +15,11 @@ import { IoClose } from 'react-icons/io5';
 import { UserMobileMenu } from './UserMobileMenu';
 import { MobileList } from './UserMobileList';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/selectors';
 
 export const UserMenu = () => {
+  const nic = useSelector(selectUser.name);
   const [isOpenMenu, setOpenMenu] = useState(false);
 
   const handleOpenMenu = e => {
@@ -48,14 +51,14 @@ export const UserMenu = () => {
           <div>
             {' '}
             <UserDesktopWrapper>
-              <Nic>Nic</Nic>
+              <Nic>{nic}</Nic>
               <Exit>Exit</Exit>
             </UserDesktopWrapper>
           </div>
         </UserWraper>
       </UserMenuWrap>
       <UserMobileMenu onCloseOpen={handleOpenMenu} />
-      {isOpenMenu && <MobileList />}
+      {isOpenMenu && <MobileList onCloseOpen={handleOpenMenu} />}
     </>
   );
 };

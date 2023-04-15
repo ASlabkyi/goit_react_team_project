@@ -6,8 +6,8 @@ import { Logo } from './Logo';
 export const Navigation = () => {
   return (
     <div>
-      {/* <AuthMenu /> */}
-      <UserMenu />
+      <AuthMenu />
+      {/* <UserMenu /> */}
     </div>
   );
 };
