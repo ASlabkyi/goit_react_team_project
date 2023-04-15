@@ -3,6 +3,16 @@ import { register, login, logout } from './operations';
 
 const initialState = {
   user: { username: null, email: null, userData: {} },
+  todaySummary: {
+    date: null,
+    kcalLeft: null,
+    kcalConsumed: null,
+    dailyRate: null,
+    percentsOfDailyRate: null,
+    userId: null,
+    id: null,
+  },
+  id: null,
   accessToken: null,
   refreshToken: null,
   sessionId: null,
@@ -15,18 +25,21 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.fulfilled](state, action) {
-      state.user = action.payload.username;
+      state.user = action.payload;
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       state.sessionId = action.payload.sid;
       state.isLoggedIn = true;
     },
     [login.fulfilled](state, action) {
-      state.user = action.payload.user;
+      state.user = action.payload;
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       state.sessionId = action.payload.sid;
       state.isLoggedIn = true;
+      state.user.userData = action.payload.userData;
+      state.todaySummary = action.payload.todaySummary;
+      state.id = action.payload.user.id;
     },
     [logout.fulfilled](state, action) {
       state.user = { username: null, email: null, userData: {} };
