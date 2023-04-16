@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import { FormControl } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
+import { 
+  FormControl, 
+  useMediaQuery, 
+  Button, Typography, 
+  FormLabel, 
+  FormControlLabel, 
+  RadioGroup, 
+  Radio, 
+  Box, 
+  TextField 
+} from '@mui/material';
 
 const DailyCaloriesForm = () => {
 
