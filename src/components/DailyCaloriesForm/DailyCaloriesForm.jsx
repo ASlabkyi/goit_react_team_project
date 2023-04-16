@@ -151,7 +151,7 @@ const DailyCaloriesForm = () => {
                     <TextField
                       
                       id="standard-multiline-flexible"
-                      label="Height*"
+                      label="Height"
                       multiline
                       variant="standard"
                       value={height}
@@ -174,7 +174,7 @@ const DailyCaloriesForm = () => {
                     />
                     <TextField
                       id="standard-textarea"
-                      label="Age*"
+                      label="Age"
                       multiline
                       variant="standard"
                       value={age}
@@ -197,7 +197,7 @@ const DailyCaloriesForm = () => {
                     />
                     <TextField
                       id="standard-textarea"
-                      label="Current weight*"
+                      label="Current weight"
                       multiline
                       variant="standard"
                       value={currentWeight}
@@ -222,7 +222,7 @@ const DailyCaloriesForm = () => {
                   <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <TextField
                       id="standard-textarea"
-                      label="Desired weight*"
+                      label="Desired weight"
                       multiline
                       variant="standard"
                       value={desiredWeight}
@@ -261,7 +261,7 @@ const DailyCaloriesForm = () => {
                                     sm: 'unset'
                                     }
                                 }} >
-                                Blood type*
+                                Blood type
                             </FormLabel>
                             <RadioGroup
                             aria-labelledby="demo-radio-group-label"
