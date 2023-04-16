@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router';
-
 import { Layout } from 'components/Layout/Layout';
 import { lazy } from 'react';
 
@@ -10,6 +9,7 @@ const Login = lazy(() => import('../pages/Login/Login'));
 const Registration = lazy(() => import('../pages/Registration/Registration'));
 
 export const App = () => {
+  
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
