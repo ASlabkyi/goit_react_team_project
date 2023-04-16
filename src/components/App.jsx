@@ -1,8 +1,11 @@
 import { Routes, Route } from 'react-router';
-
 import { Layout } from 'components/Layout/Layout';
+import { DiaryList } from './DiaryList/DiaryList';
 
 export const App = () => {
+  // const deleteButton = () => {
+  //   console.log("delete")
+  
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -12,7 +15,7 @@ export const App = () => {
 
         <Route path="/register" element={<div>Register</div>} />
 
-        <Route path="/diary" element={<div>Diary</div>} />
+        <Route path="/diary" element={<DiaryList />} />
 
         <Route path="/calculator" element={<div>Calculator</div>} />
       </Route>
