@@ -61,7 +61,7 @@ const CalcRightSide = () => {
       sx={{
         position: 'relative',
         bgcolor: 'var(--gray-bg-color)',
-        width: mainWidth,
+        maxWidth: mainWidth,
         minHeight: minHeight,
         paddingTop: mainPaddingTop,
         paddingBottom: mainPaddingBottom,
