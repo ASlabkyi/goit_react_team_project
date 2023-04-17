@@ -14,17 +14,16 @@ import {
 import { IoClose } from 'react-icons/io5';
 import { UserMobileMenu } from './UserMobileMenu';
 import { MobileList } from './UserMobileList';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 
 export const UserMenu = () => {
-  const nic = useSelector(selectUser.name);
+  const nic = useSelector(selectUser).name;
   const [isOpenMenu, setOpenMenu] = useState(false);
 
-  const handleOpenMenu = e => {
-    e.preventDefault();
-    return setOpenMenu(!isOpenMenu);
+  const handleOpenMenu = () => {
+    setOpenMenu(!isOpenMenu);
   };
   return (
     <>
