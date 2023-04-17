@@ -1,30 +1,22 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Box = styled.div`
   position: relative;
-`
-
+`;
 
 export const List = styled.ul`
-  //background-color: red;
-  width: 500px;
-  height: 305px;
-  position: relative;
-  overflow: scroll;
-  overflow-x: hidden;
-  z-index: 2;
+  &::-webkit-scrollbar {
+    width: 14px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 
-  ::-webkit-scrollbar {
-    width: 6px;
+  &::-webkit-scrollbar-thumb {
+    border: 6px solid white; // Изменить цвет при смене темы
+    background-color: var(--gray-text-cl);
+    border-radius: 20px;
     height: 40px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #f0f1f3;
-    box-shadow: none;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #264061;
-    box-shadow: none;
   }
 `;
 export const BlurBlock = styled.div`
