@@ -131,7 +131,7 @@ const DailyCaloriesForm = () => {
             paddingRight: '16px',
             marginBottom: '60px',
             marginTop: '147px',
-            margin: ' 0 auto',
+
             '& .MuiTextField-root': { m: 1, width: '25ch' },
           }}
         >
