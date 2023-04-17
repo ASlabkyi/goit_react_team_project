@@ -14,13 +14,15 @@ import {
 import { IoClose } from 'react-icons/io5';
 import { UserMobileMenu } from './UserMobileMenu';
 import { MobileList } from './UserMobileList';
-import { useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
+import { logout } from 'redux/auth/operations';
 
 export const UserMenu = () => {
   const nic = useSelector(selectUser).name;
   const [isOpenMenu, setOpenMenu] = useState(false);
+  const dispatch = useDispatch();
 
   const handleOpenMenu = () => {
     setOpenMenu(!isOpenMenu);
@@ -51,7 +53,7 @@ export const UserMenu = () => {
             {' '}
             <UserDesktopWrapper>
               <Nic>{nic}</Nic>
-              <Exit>Exit</Exit>
+              <Exit onClick={() => dispatch(logout())}>Exit</Exit>
             </UserDesktopWrapper>
           </div>
         </UserWraper>

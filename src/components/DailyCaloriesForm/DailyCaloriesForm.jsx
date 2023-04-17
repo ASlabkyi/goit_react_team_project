@@ -125,13 +125,11 @@ const DailyCaloriesForm = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            width: { xs: '100%', md: '608px', lg: '608px' },
-            height: { xs: 'auto', md: '343px' },
-            paddingLeft: '16px',
-            paddingRight: '16px',
-            marginBottom: '60px',
-            marginTop: '147px',
-
+            minWidth: { xs: '100%', md: '704px', lg: '608px' },
+            minHeight: { xs: 'auto', md: '343px' },
+            paddingLeft: { xs: '20px', md: '32px', lg: '16px' },
+            paddingRight: { xs: '20px', md: '32px', lg: '16px' },
+            paddingTop: { xs: '32px', md: '100px', lg: '147px' },
             '& .MuiTextField-root': { m: 1, width: '25ch' },
           }}
         >
@@ -143,7 +141,7 @@ const DailyCaloriesForm = () => {
               fontFamily: 'Verdana, sans-serif',
               fontWeight: 700,
               fontSize: { sm: '18px', md: '34px' },
-              marginBottom: { sm: '34px', md: '68px' },
+              marginBottom: { sm: '34px', md: '38px' },
               lineHeight: { sm: '25px', md: '48px' },
               letterSpacing: '4%',
             }}
@@ -289,8 +287,7 @@ const DailyCaloriesForm = () => {
               </FormControl>
             </Box>
           </Box>
-        </Box>
-        <Box
+          <Box
           sx={{
             display: 'flex',
             justifyContent: {
@@ -306,7 +303,8 @@ const DailyCaloriesForm = () => {
             sx={{
               width: '210px',
               height: '43px',
-              marginTop: '30px',
+              marginTop: '60px',
+              marginBottom: { xs: '41px', md: '48px', lg: '0px' },
               marginLeft: {
                 md: '32px',
                 lg: '339px',
@@ -330,6 +328,7 @@ const DailyCaloriesForm = () => {
           >
             Start losing weight
           </Button>
+        </Box>
         </Box>
       </Box>
     </>
