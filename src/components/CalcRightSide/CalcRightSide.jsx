@@ -67,6 +67,7 @@ const CalcRightSide = () => {
         paddingBottom: mainPaddingBottom,
         paddingLeft: mainPaddingLeft,
         paddingRight: mainPaddingRight,
+        margin: '0 auto',
         display: 'flex',
         flexDirection: mainFlexDirection,
         gap: mainGap,
