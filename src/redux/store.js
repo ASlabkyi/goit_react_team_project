@@ -15,6 +15,7 @@ import { dailyRateSlice } from './dailyRate/dailyRateSlice';
 import { productSlice } from './product/productsSlice';
 import { dayInfoSlice } from './dayInfo/dayInfoSlice';
 import { userInfoSlice } from './userInfo/userInfoSlice';
+import { modalOpenedReducer } from './modal/modalOpenedSlice';
 
 const persistConfig = {
   key: 'token',
@@ -31,6 +32,7 @@ export const store = configureStore({
     product: productSlice.reducer,
     dayInfo: dayInfoSlice.reducer,
     userInfo: userInfoSlice.reducer,
+    modalOpenedReducer: modalOpenedReducer.reducer,
   },
 
   middleware: getDefaultMiddleware =>
