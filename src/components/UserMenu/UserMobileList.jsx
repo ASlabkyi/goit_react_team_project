@@ -1,6 +1,6 @@
 import { LinkMobile, Mobilelist } from './UserMenu.styled';
 
-export const MobileList = onCloseOpen => {
+export const MobileList = ({ onCloseOpen }) => {
   return (
     <Mobilelist>
       <LinkMobile to="/diary" onClick={onCloseOpen}>
