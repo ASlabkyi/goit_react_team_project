@@ -1,50 +1,43 @@
-import { Form } from 'formik';
 import styled from '@emotion/styled';
 import { Button, TextField } from '@mui/material';
 
 export const Title = styled.h2`
-  color: rgb(252, 132, 45);
+  // font-family: 'Verdana';
+  font-weight: 700;
   font-size: 14px;
-  margin-left: 32px;
-`;
-
-export const FormRegister = styled(Form)`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--orange-color);
+  margin-bottom: 60px;
   @media screen and (min-width: 768px) {
-    align-items: start;
-    margin-left: 32px;
-  }
-  @media screen and (min-width: 1280px) {
-    margin-left: 16px;
+    text-align: start;
   }
 `;
 
 export const Input = styled(TextField)({
   '& label.Mui-focused': {
-    color: 'orange',
+    color: 'var(--orange-color)',
   },
   '& .MuiInput-underline:after': {
-    borderBottomColor: 'orange',
+    borderBottomColor: 'var(--orange-color)',
   },
   '& .MuiOutlinedInput-root': {
     '&.Mui-focused fieldset': {
-      borderColor: 'orange',
+      borderColor: 'var(--orange-color)',
     },
   },
 });
 
 export const RegisterBtn = styled(Button)({
   textTransform: 'none',
-  padding: '13px 50px',
   boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
   borderRadius: '30px',
   width: '182px',
   height: '44px',
   fontSize: '14px',
-  backgroundColor: '#fc842d',
+  fontWeight: '700',
+  lineHeight: '1.75',
+  backgroundColor: 'var(--orange-color)',
   ' &:hover': {
     backgroundColor: '#ef6705',
   },
@@ -55,22 +48,23 @@ export const RegisterBtn = styled(Button)({
 
 export const LoginBtn = styled(Button)({
   textTransform: 'none',
-  padding: '13px 50px',
   borderRadius: '30px',
   width: '182px',
   height: '44px',
   fontSize: '14px',
+  fontWeight: '700',
+  lineHeight: '1.75',
   backgroundColor: 'transparant',
   color: '#FC842D',
-  border: '2px solid #FC842D',
+  border: '2px solid var(--orange-color)',
   ' &:hover': {
     backgroundColor: '#ef6705',
     border: 'none',
-    color: '#fff',
+    color: 'var(--white-color)',
   },
   ' &:focus': {
     backgroundColor: '#ef6705',
     border: 'none',
-    color: '#fff',
+    color: 'var(--white-color)',
   },
 });
