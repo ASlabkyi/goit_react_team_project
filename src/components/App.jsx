@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router';
 import { Layout } from 'components/Layout/Layout';
 import { lazy } from 'react';
+import { PublicRout } from './Publick/Publick';
+import { PrivateRout } from './PrivateRout/PrivateRoute';
 
 const Calculator = lazy(() => import('../pages/Calculator/Calculator'));
 const Diary = lazy(() => import('../pages/Diary/Diary'));
@@ -9,19 +11,34 @@ const Login = lazy(() => import('../pages/Login/Login'));
 const Registration = lazy(() => import('../pages/Registration/Registration'));
 
 export const App = () => {
-  
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
 
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={<PublicRout redirectTo="/login" component={<Login />} />}
+        />
 
-        <Route path="/register" element={<Registration />} />
+        <Route
+          path="/register"
+          element={
+            <PublicRout redirectTo="/register" component={<Registration />} />
+          }
+        />
 
-        <Route path="/diary" element={<Diary />} />
+        <Route
+          path="/diary"
+          element={<PrivateRout redirectTo="/diary" component={<Diary />} />}
+        />
 
-        <Route path="/calculator" element={<Calculator />} />
+        <Route
+          path="/calculator"
+          element={
+            <PrivateRout redirectTo="/calculator" component={<Calculator />} />
+          }
+        />
       </Route>
     </Routes>
   );
