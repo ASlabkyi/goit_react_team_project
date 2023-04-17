@@ -1,5 +1,5 @@
 import { Box, useMediaQuery } from '@mui/material';
-import './CalcLeftSide.css';
+import './DiaryLeftSide.css';
 
 const AddProdactsInput = () => {
   const isDisktop = useMediaQuery('((min-width:1280px))');

@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import './CalcLeftSide.css';
+import './DiaryLeftSide.css';
 
 const BottonAdd = () => {
   return (

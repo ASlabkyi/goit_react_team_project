@@ -1,5 +1,5 @@
 import { Box, useMediaQuery } from '@mui/material';
-import './CalcLeftSide.css';
+import './DiaryLeftSide.css';
 import ButtonAdd from './buttonAdd';
 import AddProdactsInput from './AddProdactsInput';
 
