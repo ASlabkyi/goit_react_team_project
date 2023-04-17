@@ -17,7 +17,7 @@ const BottonAdd = () => {
           height="24"
           fill="none"
         >
-          <g clip-path="url(#a)">
+          <g clipPath="url(#a)">
             <path
               fill="#fff"
               d="M18.72 12.96h-5.76v5.76h-1.92v-5.76H5.28v-1.92h5.76V5.28h1.92v5.76h5.76v1.92Z"

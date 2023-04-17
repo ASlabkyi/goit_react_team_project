@@ -46,7 +46,7 @@
   background: #e0e0e0;
 }
 
-.lebel {
+.label {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -58,11 +58,11 @@
   color: #9b9faa;
 }
 
-.lebelProduct {
+.labelProduct {
   width: 240px;
 }
 
-.lebelGrams {
+.labelGrams {
   width: 106px;
   text-align: right;
 }

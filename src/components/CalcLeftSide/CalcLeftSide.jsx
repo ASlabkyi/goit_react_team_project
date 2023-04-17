@@ -392,7 +392,7 @@ const CalcLeftSide = () => {
                       >
                         <path
                           stroke="#9B9FAA"
-                          stroke-width="2"
+                          strokeWidth="2"
                           d="m1 1 12 12M1 13 13 1"
                         />
                       </svg>

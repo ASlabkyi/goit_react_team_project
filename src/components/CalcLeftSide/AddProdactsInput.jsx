@@ -17,14 +17,14 @@ const AddProdactsInput = () => {
         gap: gap,
       }}
     >
-      <lebel className="lebel lebelProduct">
+      <label className="label labelProduct">
         Enter product name
         <input type="text" className="input" />
-      </lebel>
-      <lebel className="lebel lebelGrams">
+      </label>
+      <label className="label labelGrams">
         Grams
         <input type="text" className="input" />
-      </lebel>
+      </label>
     </Box>
   );
 };
