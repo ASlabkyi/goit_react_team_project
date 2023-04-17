@@ -13,10 +13,18 @@ import {
   Radio,
   Box,
   TextField,
+  Modal,
 } from '@mui/material';
 
 const DailyCaloriesForm = () => {
   const dispatch = useDispatch();
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    if (height !== '' && age !== '' && weight !== '' && desiredWeight !== '' && window.innerWidth > 767) {
+      setOpen(true);
+    }
+  };  const handleClose = () => setOpen(false);
 
   const [height, setHeight] = useState('');
   const [heightError, setHeightError] = useState('');
@@ -78,6 +86,18 @@ const DailyCaloriesForm = () => {
     setBloodTypeError('');
   };
 
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '672px',
+    height: 'auto',
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+  };
+
   const isMobile = useMediaQuery('(max-width:767px)');
   const flexDirection = isMobile ? 'column' : 'row';
 
@@ -108,14 +128,17 @@ const DailyCaloriesForm = () => {
     }
 
     if (!formErrors) {
-      dispatch(
-        calculateDailyRate({ height, age, weight, desiredWeight, bloodType })
-      );
+      if (window.innerWidth > 767) {
+        dispatch(
+          calculateDailyRate({ height, age, weight, desiredWeight, bloodType })
+        );
+        setOpen(true);
       setHeight('');
       setAge('');
       setWeight('');
       setDesiredWeight('');
       setBloodType('');
+      }
     }
   };
 
@@ -307,6 +330,7 @@ const DailyCaloriesForm = () => {
             <Button
               variant="contained"
               type="submit"
+              onClick={handleOpen}
               sx={{
                 width: '210px',
                 height: '43px',
@@ -335,6 +359,23 @@ const DailyCaloriesForm = () => {
             >
               Start losing weight
             </Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description">
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2" fontFamily='Verdana' fontStyle='normal' fontWeight='700' fontSize='26px' lineHeight='140%'>
+                Your recommended daily calorie intake is
+                </Typography>
+                <Typography id="modal-modal-title" variant="h6" component="h2" fontFamily='Verdana' fontStyle='normal' fontWeight='700' fontSize='26px' lineHeight='140%'>
+                Here will be number of kcal
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                </Typography>
+              </Box>
+            </Modal>
           </Box>
         </Box>
       </Box>
