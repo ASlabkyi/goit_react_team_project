@@ -119,10 +119,6 @@ const DailyCaloriesForm = () => {
         onSubmit={handleSubmit}
         noValidate
         autoComplete="off"
-        sx={{
-          margin: ' 0 auto',
-          paddingBottom: '40px',
-        }}
       >
         <Box
           sx={{
