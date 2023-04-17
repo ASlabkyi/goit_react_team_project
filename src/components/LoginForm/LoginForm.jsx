@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { Box } from '@mui/material';
 import * as yup from 'yup';
-import { Formik } from 'formik';
+import { Formik,Form } from 'formik';
 import {
-  FormLogIn,
   Input,
   LoginBtn,
   RegisterBtn,
@@ -39,7 +38,30 @@ const LoginForm = () => {
   };
 
   return (
-    <>
+    <Box
+      component="div"
+      sx={{
+        display: 'flex',
+
+        flexDirection: { xs: 'column' },
+        paddingTop: {
+          sm: '40px',
+          md: '160px ',
+          lg: '160px ',
+        },
+        paddingLeft: {
+          sm: '20px',
+          md: '32px ',
+          lg: '16px ',
+        },
+        paddingBottom: {
+          sm: '100px',
+          md: '419px ',
+          lg: '179px ',
+        },
+        paddingRight: { sm: '20px' },
+      }}
+    >
       <Title>LOG IN</Title>
       <Formik
         initialValues={initialValues}
@@ -47,64 +69,96 @@ const LoginForm = () => {
         validationSchema={schema}
       >
         {({ values, handleChange, handleBlur }) => (
-          <FormLogIn autoComplete="off">
+          <Form autoComplete="off">
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
-                gridGap: '40px',
-                mt: '55px',
               }}
             >
-              <Input
-                type="email"
-                name="email"
-                label="Email"
-                variant="standard"
-                required
-                placeholder="example@mail.com"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-              ></Input>
-              <Input
-                type="password"
-                name="password"
-                label="Password"
-                variant="standard"
-                required
-                autoComplete="off"
-                placeholder="Min 8 characters"
-                value={values.password}
-                onBlur={handleBlur}
-                onChange={handleChange}
-              ></Input>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: ['column', 'row'],
-                alignItems: 'center',
-                gridGap: ['20px', '32px'],
-                mt: '60px',
-              }}
-            >
-              <LoginBtn type="submit" variant="contained">
-                Log in
-              </LoginBtn>
-              <RegisterBtn
-                type="submit"
-                variant="outlined"
-                href="/goit_react_team_project/register"
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '40px',
+
+                  marginLeft: { xs: 'auto', md: '0px' },
+                  marginRight: { xs: 'auto', md: '0px' },
+                  marginBottom: '60px',
+                  maxWidth: { sm: '280px', md: '240px' },
+                  width: '100%',
+                }}
               >
-                Register
-              </RegisterBtn>
+                <Input
+                  type="email"
+                  name="email"
+                  label="Email"
+                  variant="standard"
+                  required
+                  placeholder="Example@mail.com"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.email}
+                  sx={{
+                    label: {
+                      color: 'var(--gray-text-color)',
+                      fontSize: '14px',
+                      fontWeight: '700',
+                      letterSpacing: '0.04em',
+                    },
+                  }}
+                ></Input>
+                <Input
+                  type="password"
+                  name="password"
+                  label="Password"
+                  variant="standard"
+                  required
+                  autoComplete="off"
+                  placeholder="Min 8 characters"
+                  value={values.password}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  sx={{
+                    label: {
+                      color: 'var(--gray-text-color)',
+                      fontSize: '14px',
+                      fontWeight: '700',
+                      letterSpacing: '0.04em',
+                    },
+                  }}
+                ></Input>
+              </Box>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs:'column', md:'row'},
+                  marginLeft: { xs: 'auto', md: '0px' },
+                  marginRight: { xs: 'auto', md: '0px' },
+                }}
+              >
+                <LoginBtn type="submit" variant="contained"
+                  sx={{
+                    marginBottom: { xs: '20px', md: '0px' },
+                    marginRight: { md: '32px' },
+                    padding: { xs: '13px 50px', lg: '13px 37px' },
+                  }}>
+                  Log in
+                </LoginBtn>
+                <RegisterBtn
+                  type="submit"
+                  variant="outlined"
+                  href="/goit_react_team_project/register"
+                >
+                  Register
+                </RegisterBtn>
+              </Box>
             </Box>
-          </FormLogIn>
+          </Form>
         )}
       </Formik>
-    </>
+    </Box>
   );
 };
 export default LoginForm;

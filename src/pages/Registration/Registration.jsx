@@ -1,10 +1,11 @@
 import Register from 'components/RegistrationForm/RegistrationForm';
+import BackgroundWrapper from 'components/Background/BackgroundWrapper.styled';
 
 const Registration = () => {
   return (
-    <div>
+    <BackgroundWrapper>
       <Register />
-    </div>
+    </BackgroundWrapper>
   );
 };
 
