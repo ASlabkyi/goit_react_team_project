@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { calculateDailyRate } from '../../redux/dailyRate/operations';
 
 import {
   FormControl,
@@ -14,12 +16,14 @@ import {
 } from '@mui/material';
 
 const DailyCaloriesForm = () => {
+  const dispatch = useDispatch();
+
   const [height, setHeight] = useState('');
   const [heightError, setHeightError] = useState('');
   const [age, setAge] = useState('');
   const [ageError, setAgeError] = useState('');
-  const [currentWeight, setCurrentWeight] = useState('');
-  const [currentWeightError, setCurrentWeightError] = useState('');
+  const [weight, setWeight] = useState('');
+  const [weightError, setWeightError] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
   const [desiredWeightError, setDesiredWeightError] = useState('');
   const [bloodType, setBloodType] = useState('');
@@ -47,14 +51,14 @@ const DailyCaloriesForm = () => {
     }
   };
 
-  const handleCurrentWeightChange = event => {
+  const handleWeightChange = event => {
     const input = event.target.value;
     const regex = /^\d*\.?\d*$/;
     if (regex.test(input)) {
-      setCurrentWeight(input);
-      setCurrentWeightError('');
+      setWeight(input);
+      setWeightError('');
     } else {
-      setCurrentWeightError('Please enter a valid number, on example "70"');
+      setWeightError('Please enter a valid number, on example "70"');
     }
   };
 
@@ -89,8 +93,8 @@ const DailyCaloriesForm = () => {
       setAgeError('Please enter your age');
       formErrors = true;
     }
-    if (currentWeight === '') {
-      setCurrentWeightError('Please enter your current weight');
+    if (weight === '') {
+      setWeightError('Please enter your current weight');
       formErrors = true;
     }
     if (desiredWeight === '') {
@@ -104,9 +108,12 @@ const DailyCaloriesForm = () => {
     }
 
     if (!formErrors) {
+      dispatch(
+        calculateDailyRate({ height, age, weight, desiredWeight, bloodType })
+      );
       setHeight('');
       setAge('');
-      setCurrentWeight('');
+      setWeight('');
       setDesiredWeight('');
       setBloodType('');
     }
@@ -124,14 +131,12 @@ const DailyCaloriesForm = () => {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            width: { xs: '100%', md: '608px', lg: '608px' },
-            height: { xs: 'auto', md: '343px' },
-            paddingLeft: '16px',
-            paddingRight: '16px',
-            marginBottom: '60px',
-            marginTop: '147px',
-
+            alignItems: { xs: 'center', md: 'flex-start', lg: 'flex-start' },
+            minWidth: { xs: '100%', md: '704px', lg: '608px' },
+            minHeight: { xs: 'auto', md: '343px' },
+            paddingLeft: { xs: '20px', md: '32px', lg: '16px' },
+            paddingRight: { xs: '20px', md: '32px', lg: '16px' },
+            paddingTop: { xs: '32px', md: '100px', lg: '147px' },
             '& .MuiTextField-root': { m: 1, width: '25ch' },
           }}
         >
@@ -143,7 +148,7 @@ const DailyCaloriesForm = () => {
               fontFamily: 'Verdana, sans-serif',
               fontWeight: 700,
               fontSize: { sm: '18px', md: '34px' },
-              marginBottom: { sm: '34px', md: '68px' },
+              marginBottom: { sm: '34px', md: '38px' },
               lineHeight: { sm: '25px', md: '48px' },
               letterSpacing: '4%',
             }}
@@ -209,11 +214,11 @@ const DailyCaloriesForm = () => {
                 label="Current weight"
                 multiline
                 variant="standard"
-                value={currentWeight}
-                onChange={handleCurrentWeightChange}
+                value={weight}
+                onChange={handleWeightChange}
                 required={true}
-                helperText={currentWeightError}
-                error={!!currentWeightError}
+                helperText={weightError}
+                error={!!weightError}
                 sx={{
                   '& .MuiInputLabel-root': {
                     fontFamily: 'Verdana',
@@ -289,47 +294,48 @@ const DailyCaloriesForm = () => {
               </FormControl>
             </Box>
           </Box>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: {
-              xs: 'center',
-              sm: 'center',
-              md: 'flex-start',
-            },
-          }}
-        >
-          <Button
-            variant="contained"
-            type="submit"
+          <Box
             sx={{
-              width: '210px',
-              height: '43px',
-              marginTop: '30px',
-              marginLeft: {
-                md: '32px',
-                lg: '339px',
-              },
-              background: '#FC842D',
-              boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
-              borderRadius: '30px',
-              textTransform: 'none',
-              fontFamily: 'Verdana',
-              fontWeight: 700,
-              fontSize: '14px',
-              lineHeight: '17px',
-              letterSpacing: {
-                xs: '0.04em',
-                sm: 'unset',
-              },
-              '&:hover': {
-                background: '#FC842D',
+              display: 'flex',
+              justifyContent: {
+                xs: 'center',
+                sm: 'center',
+                md: 'flex-start',
               },
             }}
           >
-            Start losing weight
-          </Button>
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                width: '210px',
+                height: '43px',
+                marginTop: '60px',
+                marginBottom: { xs: '41px', md: '48px', lg: '0px' },
+                marginLeft: {
+                  md: '32px',
+                  lg: '339px',
+                },
+                background: '#FC842D',
+                boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
+                borderRadius: '30px',
+                textTransform: 'none',
+                fontFamily: 'Verdana',
+                fontWeight: 700,
+                fontSize: '14px',
+                lineHeight: '17px',
+                letterSpacing: {
+                  xs: '0.04em',
+                  sm: 'unset',
+                },
+                '&:hover': {
+                  background: '#FC842D',
+                },
+              }}
+            >
+              Start losing weight
+            </Button>
+          </Box>
         </Box>
       </Box>
     </>

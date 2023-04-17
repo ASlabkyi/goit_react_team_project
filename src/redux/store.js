@@ -11,10 +11,11 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
-import { dailyRateSlice } from './dailyRate/dailyRateSlice';
+import {dailyRateSlice} from './dailyRate/dailyRateSlice';
 import { productSlice } from './product/productsSlice';
 import { dayInfoSlice } from './dayInfo/dayInfoSlice';
 import { userInfoSlice } from './userInfo/userInfoSlice';
+import { modalOpenedReducer } from './modal/modalOpenedSlice';
 
 const persistConfig = {
   key: 'token',
@@ -31,6 +32,7 @@ export const store = configureStore({
     product: productSlice.reducer,
     dayInfo: dayInfoSlice.reducer,
     userInfo: userInfoSlice.reducer,
+    modalOpenedReducer: modalOpenedReducer.reducer,
   },
 
   middleware: getDefaultMiddleware =>
