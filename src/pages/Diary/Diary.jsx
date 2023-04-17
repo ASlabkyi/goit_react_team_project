@@ -1,13 +1,13 @@
 import { DiaryList } from 'components/DiaryList/DiaryList';
 import CalcRightSide from 'components/CalcRightSide/CalcRightSide';
 import { DiaryWrapper } from './Diary.styled';
-import CalcLeftSide from 'components/DiaryLeftSide/DiaryLeftSide';
+import DiaryLeftSide from 'components/DiaryLeftSide/DiaryLeftSide';
 
 const Diary = () => {
   return (
     <DiaryWrapper>
       {/* <DiaryList /> */}
-      <CalcLeftSide />
+      <DiaryLeftSide />
       <CalcRightSide />
     </DiaryWrapper>
   );
