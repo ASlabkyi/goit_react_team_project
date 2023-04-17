@@ -6,7 +6,8 @@ import { logout } from 'redux/auth/operations';
 
 export const UserMobileMenu = () => {
   const dipatch = useDispatch;
-  const name = useSelector(selectUser).name;
+  const name = useSelector(selectUser);
+  const nic = name.username;
   return (
     <>
       <NicMenuWrapper>
@@ -15,7 +16,7 @@ export const UserMobileMenu = () => {
           <IoReturnDownBackSharp />
         </Back>
         <MobileLink>
-          <Nic>{name}</Nic>
+          <Nic>{nic}</Nic>
           <Exit onClick={() => dipatch(logout())}>Exit</Exit>
         </MobileLink>
       </NicMenuWrapper>
