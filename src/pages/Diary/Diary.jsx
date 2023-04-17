@@ -1,7 +1,14 @@
-// import DailyCaloriesForm from 'components/DailyCaloriesForm/DailyCaloriesForm';
+import { DiaryList } from 'components/DiaryList/DiaryList';
+import CalcRightSide from 'components/CalcRightSide/CalcRightSide';
+import { DiaryWrapper } from './Diary.styled';
 
 const Diary = () => {
-  return <div>DailyCaloriesForm</div>;
+  return (
+    <DiaryWrapper>
+      <DiaryList />
+      <CalcRightSide />
+    </DiaryWrapper>
+  );
 };
 
 export default Diary;

@@ -11,9 +11,22 @@ import {
   UserWraper,
   UserMenuWrap,
 } from './UserMenu.styled';
+import { IoClose } from 'react-icons/io5';
 import { UserMobileMenu } from './UserMobileMenu';
+import { MobileList } from './UserMobileList';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/selectors';
+import { logout } from 'redux/auth/operations';
 
 export const UserMenu = () => {
+  const nic = useSelector(selectUser).name;
+  const [isOpenMenu, setOpenMenu] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleOpenMenu = () => {
+    setOpenMenu(!isOpenMenu);
+  };
   return (
     <>
       <UserMenuWrap>
@@ -24,22 +37,29 @@ export const UserMenu = () => {
           <Wrapper>
             <NavliNk to="/diary">Diary</NavliNk>
             <NavliNk to="/calculator">Calculator</NavliNk>
-            <BurgerMenu>
-              {' '}
-              <GiHamburgerMenu />
-            </BurgerMenu>
+            {!isOpenMenu ? (
+              <BurgerMenu type="button" onClick={handleOpenMenu}>
+                {' '}
+                <GiHamburgerMenu />
+              </BurgerMenu>
+            ) : (
+              <BurgerMenu type="button" onClick={handleOpenMenu}>
+                <IoClose />
+              </BurgerMenu>
+            )}
           </Wrapper>
 
           <div>
             {' '}
             <UserDesktopWrapper>
-              <Nic>Nic</Nic>
-              <Exit>Exit</Exit>
+              <Nic>{nic}</Nic>
+              <Exit onClick={() => dispatch(logout())}>Exit</Exit>
             </UserDesktopWrapper>
           </div>
         </UserWraper>
       </UserMenuWrap>
-      <UserMobileMenu />
+      <UserMobileMenu onCloseOpen={handleOpenMenu} />
+      {isOpenMenu && <MobileList onCloseOpen={handleOpenMenu} />}
     </>
   );
 };

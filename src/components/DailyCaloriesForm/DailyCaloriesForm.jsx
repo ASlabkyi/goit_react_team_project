@@ -1,39 +1,135 @@
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import { FormControl } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import React, { useState } from 'react';
+
+import {
+  FormControl,
+  useMediaQuery,
+  Button,
+  Typography,
+  FormLabel,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  Box,
+  TextField,
+} from '@mui/material';
 
 const DailyCaloriesForm = () => {
-  const isMobile = useMediaQuery('(max-width:767px)');
+  const [height, setHeight] = useState('');
+  const [heightError, setHeightError] = useState('');
+  const [age, setAge] = useState('');
+  const [ageError, setAgeError] = useState('');
+  const [currentWeight, setCurrentWeight] = useState('');
+  const [currentWeightError, setCurrentWeightError] = useState('');
+  const [desiredWeight, setDesiredWeight] = useState('');
+  const [desiredWeightError, setDesiredWeightError] = useState('');
+  const [bloodType, setBloodType] = useState('');
+  const [bloodTypeError, setBloodTypeError] = useState('');
 
+  const handleHeightChange = event => {
+    const input = event.target.value;
+    const regex = /^\d*\.?\d*$/;
+    if (regex.test(input)) {
+      setHeight(input);
+      setHeightError('');
+    } else {
+      setHeightError('Please enter a valid number, on example "173"');
+    }
+  };
+
+  const handleAgeChange = event => {
+    const input = event.target.value;
+    const regex = /^\d+$/;
+    if (regex.test(input)) {
+      setAge(input);
+      setAgeError('');
+    } else {
+      setAgeError('Please enter a valid number, on example "30"');
+    }
+  };
+
+  const handleCurrentWeightChange = event => {
+    const input = event.target.value;
+    const regex = /^\d*\.?\d*$/;
+    if (regex.test(input)) {
+      setCurrentWeight(input);
+      setCurrentWeightError('');
+    } else {
+      setCurrentWeightError('Please enter a valid number, on example "70"');
+    }
+  };
+
+  const handleDesiredWeightChange = event => {
+    const input = event.target.value;
+    const regex = /^\d*\.?\d*$/;
+    if (regex.test(input)) {
+      setDesiredWeight(input);
+      setDesiredWeightError('');
+    } else {
+      setDesiredWeightError('Please enter a valid number, on example "65"');
+    }
+  };
+
+  const handleBloodTypeChange = event => {
+    setBloodType(event.target.value);
+    setBloodTypeError('');
+  };
+
+  const isMobile = useMediaQuery('(max-width:767px)');
   const flexDirection = isMobile ? 'column' : 'row';
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    let formErrors = false;
+
+    if (height === '') {
+      setHeightError('Please enter your height');
+      formErrors = true;
+    }
+    if (age === '') {
+      setAgeError('Please enter your age');
+      formErrors = true;
+    }
+    if (currentWeight === '') {
+      setCurrentWeightError('Please enter your current weight');
+      formErrors = true;
+    }
+    if (desiredWeight === '') {
+      setDesiredWeightError('Please enter your desired цeight');
+      formErrors = true;
+    }
+
+    if (bloodType === '') {
+      setBloodTypeError('Please select your blood type');
+      formErrors = true;
+    }
+
+    if (!formErrors) {
+      setHeight('');
+      setAge('');
+      setCurrentWeight('');
+      setDesiredWeight('');
+      setBloodType('');
+    }
+  };
 
   return (
     <>
       <Box
+        component="form"
+        onSubmit={handleSubmit}
         noValidate
         autoComplete="off"
-        sx={{
-          margin: '0 auto',
-        }}
       >
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            width: { xs: '100%', md: '608px', lg: '608px' },
-            height: { xs: 'auto', md: '343px' },
-            paddingLeft: '16px',
-            paddingRight: '16px',
-            marginBottom: '60px',
-            marginTop: '293px',
+            minWidth: { xs: '100%', md: '704px', lg: '608px' },
+            minHeight: { xs: 'auto', md: '343px' },
+            paddingLeft: { xs: '20px', md: '32px', lg: '16px' },
+            paddingRight: { xs: '20px', md: '32px', lg: '16px' },
+            paddingTop: { xs: '32px', md: '100px', lg: '147px' },
             '& .MuiTextField-root': { m: 1, width: '25ch' },
           }}
         >
@@ -45,7 +141,7 @@ const DailyCaloriesForm = () => {
               fontFamily: 'Verdana, sans-serif',
               fontWeight: 700,
               fontSize: { sm: '18px', md: '34px' },
-              marginBottom: { sm: '34px', md: '68px' },
+              marginBottom: { sm: '34px', md: '38px' },
               lineHeight: { sm: '25px', md: '48px' },
               letterSpacing: '4%',
             }}
@@ -62,9 +158,14 @@ const DailyCaloriesForm = () => {
             >
               <TextField
                 id="standard-multiline-flexible"
-                label="Height*"
+                label="Height"
                 multiline
                 variant="standard"
+                value={height}
+                onChange={handleHeightChange}
+                required={true}
+                helperText={heightError}
+                error={!!heightError}
                 sx={{
                   '& .MuiInputLabel-root': {
                     fontFamily: 'Verdana',
@@ -80,9 +181,14 @@ const DailyCaloriesForm = () => {
               />
               <TextField
                 id="standard-textarea"
-                label="Age*"
+                label="Age"
                 multiline
                 variant="standard"
+                value={age}
+                onChange={handleAgeChange}
+                required={true}
+                helperText={ageError}
+                error={!!ageError}
                 sx={{
                   '& .MuiInputLabel-root': {
                     fontFamily: 'Verdana',
@@ -98,9 +204,14 @@ const DailyCaloriesForm = () => {
               />
               <TextField
                 id="standard-textarea"
-                label="Current weight*"
+                label="Current weight"
                 multiline
                 variant="standard"
+                value={currentWeight}
+                onChange={handleCurrentWeightChange}
+                required={true}
+                helperText={currentWeightError}
+                error={!!currentWeightError}
                 sx={{
                   '& .MuiInputLabel-root': {
                     fontFamily: 'Verdana',
@@ -118,9 +229,14 @@ const DailyCaloriesForm = () => {
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <TextField
                 id="standard-textarea"
-                label="Desired weight*"
+                label="Desired weight"
                 multiline
                 variant="standard"
+                value={desiredWeight}
+                onChange={handleDesiredWeightChange}
+                required={true}
+                helperText={desiredWeightError}
+                error={!!desiredWeightError}
                 sx={{
                   '& .MuiInputLabel-root': {
                     fontFamily: 'Verdana',
@@ -134,7 +250,11 @@ const DailyCaloriesForm = () => {
                   },
                 }}
               />
-              <FormControl component="fieldset">
+              <FormControl
+                component="fieldset"
+                required
+                error={bloodTypeError !== ''}
+              >
                 <FormLabel
                   id="demo-radio-group-label"
                   sx={{
@@ -150,39 +270,24 @@ const DailyCaloriesForm = () => {
                     },
                   }}
                 >
-                  Blood type*
+                  Blood type
                 </FormLabel>
                 <RadioGroup
                   aria-labelledby="demo-radio-group-label"
-                  name="row-radio-buttons-group"
+                  name="bloodType"
                   sx={{ flexDirection: 'row', marginLeft: '10px' }}
+                  value={bloodType}
+                  onChange={handleBloodTypeChange}
                 >
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio />}
-                    label="1"
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={<Radio />}
-                    label="2"
-                  />
-                  <FormControlLabel
-                    value="other"
-                    control={<Radio />}
-                    label="3"
-                  />
-                  <FormControlLabel
-                    value="disabled"
-                    control={<Radio />}
-                    label="4"
-                  />
+                  <FormControlLabel value="1" control={<Radio />} label="1" />
+                  <FormControlLabel value="2" control={<Radio />} label="2" />
+                  <FormControlLabel value="3" control={<Radio />} label="3" />
+                  <FormControlLabel value="4" control={<Radio />} label="4" />
                 </RadioGroup>
               </FormControl>
             </Box>
           </Box>
-        </Box>
-        <Box
+          <Box
           sx={{
             display: 'flex',
             justifyContent: {
@@ -194,15 +299,16 @@ const DailyCaloriesForm = () => {
         >
           <Button
             variant="contained"
+            type="submit"
             sx={{
               width: '210px',
               height: '43px',
-              marginTop: '30px',
+              marginTop: '60px',
+              marginBottom: { xs: '41px', md: '48px', lg: '0px' },
               marginLeft: {
                 md: '32px',
                 lg: '339px',
               },
-              marginBottom: '41px',
               background: '#FC842D',
               boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
               borderRadius: '30px',
@@ -222,6 +328,7 @@ const DailyCaloriesForm = () => {
           >
             Start losing weight
           </Button>
+        </Box>
         </Box>
       </Box>
     </>

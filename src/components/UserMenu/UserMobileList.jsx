@@ -1,10 +1,14 @@
-import { NavliNk, Mobilelist } from './UserMenu.styled';
+import { LinkMobile, Mobilelist } from './UserMenu.styled';
 
-export const MobileList = () => {
+export const MobileList = ({ onCloseOpen }) => {
   return (
     <Mobilelist>
-      <NavliNk to="/diary">Diary</NavliNk>
-      <NavliNk to="/calculator">Calculator</NavliNk>
+      <LinkMobile to="/diary" onClick={onCloseOpen}>
+        Diary
+      </LinkMobile>
+      <LinkMobile to="/calculator" onClick={onCloseOpen}>
+        Calculator
+      </LinkMobile>
     </Mobilelist>
   );
 };

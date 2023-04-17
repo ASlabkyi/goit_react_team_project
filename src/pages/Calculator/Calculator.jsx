@@ -1,13 +1,13 @@
 import CalcRightSide from 'components/CalcRightSide/CalcRightSide';
 import DailyCaloriesForm from 'components/DailyCaloriesForm/DailyCaloriesForm';
 
-import { Wrapper } from './Calculator.styled';
+import { CalculatorWrapper } from './Calculator.styled';
 const Calculator = () => {
   return (
-    <Wrapper>
+    <CalculatorWrapper>
       <DailyCaloriesForm />
       <CalcRightSide />
-    </Wrapper>
+    </CalculatorWrapper>
   );
 };
 
