@@ -85,4 +85,5 @@ Modal.propTypes = {
   onClose: PropTypes.func,
 };
 
+
 export default Modal;
