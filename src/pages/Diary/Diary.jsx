@@ -1,7 +1,9 @@
 // import DailyCaloriesForm from 'components/DailyCaloriesForm/DailyCaloriesForm';
 
+import { DiaryList } from "components/DiaryList/DiaryList";
+
 const Diary = () => {
-  return <div>DailyCaloriesForm</div>;
+  return <DiaryList/>
 };
 
 export default Diary;
