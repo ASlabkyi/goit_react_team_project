@@ -4,7 +4,9 @@ import BackgroundWrapper from 'components/Background/BackgroundWrapper.styled';
 const HomePage = () => {
   return (
     <BackgroundWrapper>
-      <DailyCaloriesForm />
+      <div styled={{ display: 'flex', alignItems: 'flex-start' }}>
+        <DailyCaloriesForm />
+      </div>
     </BackgroundWrapper>
   );
 };
