@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CalculatorWrapper = styled.div`
+export const DiaryWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
