@@ -108,7 +108,9 @@ const DailyCaloriesForm = () => {
     }
 
     if (!formErrors) {
-      dispatch(calculateDailyRate({ height, age, weight, desiredWeight, bloodType }));
+      dispatch(
+        calculateDailyRate({ height, age, weight, desiredWeight, bloodType })
+      );
       setHeight('');
       setAge('');
       setWeight('');
@@ -129,7 +131,7 @@ const DailyCaloriesForm = () => {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: { xs: 'center', md: 'flex-start', lg: 'flex-start' },
             minWidth: { xs: '100%', md: '704px', lg: '608px' },
             minHeight: { xs: 'auto', md: '343px' },
             paddingLeft: { xs: '20px', md: '32px', lg: '16px' },
@@ -293,47 +295,47 @@ const DailyCaloriesForm = () => {
             </Box>
           </Box>
           <Box
-          sx={{
-            display: 'flex',
-            justifyContent: {
-              xs: 'center',
-              sm: 'center',
-              md: 'flex-start',
-            },
-          }}
-        >
-          <Button
-            variant="contained"
-            type="submit"
             sx={{
-              width: '210px',
-              height: '43px',
-              marginTop: '60px',
-              marginBottom: { xs: '41px', md: '48px', lg: '0px' },
-              marginLeft: {
-                md: '32px',
-                lg: '339px',
-              },
-              background: '#FC842D',
-              boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
-              borderRadius: '30px',
-              textTransform: 'none',
-              fontFamily: 'Verdana',
-              fontWeight: 700,
-              fontSize: '14px',
-              lineHeight: '17px',
-              letterSpacing: {
-                xs: '0.04em',
-                sm: 'unset',
-              },
-              '&:hover': {
-                background: '#FC842D',
+              display: 'flex',
+              justifyContent: {
+                xs: 'center',
+                sm: 'center',
+                md: 'flex-start',
               },
             }}
           >
-            Start losing weight
-          </Button>
-        </Box>
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                width: '210px',
+                height: '43px',
+                marginTop: '60px',
+                marginBottom: { xs: '41px', md: '48px', lg: '0px' },
+                marginLeft: {
+                  md: '32px',
+                  lg: '339px',
+                },
+                background: '#FC842D',
+                boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
+                borderRadius: '30px',
+                textTransform: 'none',
+                fontFamily: 'Verdana',
+                fontWeight: 700,
+                fontSize: '14px',
+                lineHeight: '17px',
+                letterSpacing: {
+                  xs: '0.04em',
+                  sm: 'unset',
+                },
+                '&:hover': {
+                  background: '#FC842D',
+                },
+              }}
+            >
+              Start losing weight
+            </Button>
+          </Box>
         </Box>
       </Box>
     </>
