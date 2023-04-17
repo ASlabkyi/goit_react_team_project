@@ -36,9 +36,9 @@ export const DeleteButton = styled.button`
   border: 0.5px;
   background-color: white;
   /* position: relative; */
-/* margin-top: 7.5px;
+  /* margin-top: 7.5px;
 margin-bottom: 7.5px; */
-/* :before, :after{
+  /* :before, :after{
   content: "";
   position: absolute;
   background-color: red;
@@ -49,5 +49,4 @@ margin-bottom: 7.5px; */
   margin-left: 15%;
   height: 100%;
 } */
-
 `;

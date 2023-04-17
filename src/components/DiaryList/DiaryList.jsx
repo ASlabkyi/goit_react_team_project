@@ -1,14 +1,17 @@
 import { DiaryListItem } from "components/DiaryListItem/DiaryListItem";
-import { List } from "./DiaryList.styled"
+import { List, BlurBlock, Box } from './DiaryList.styled';
 
 
 // {/* <DiaryListItem />; */}
 
 export const DiaryList = () => {
   return (
-    <List>
-      <DiaryListItem />
-    </List>
+    <Box>
+      <List>
+        <DiaryListItem />
+      </List>
+      <BlurBlock />
+    </Box>
   );
 }
 //       // <Box sx={{ maxHeight: 300, maxWidth: 650 }}>
