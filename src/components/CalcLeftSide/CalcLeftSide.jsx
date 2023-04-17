@@ -1,5 +1,7 @@
 import { Box, useMediaQuery } from '@mui/material';
 import './CalcLeftSide.css';
+import ButtonAdd from './buttonAdd';
+import AddProdactsInput from './AddProdactsInput';
 
 const data = [
   {
@@ -188,49 +190,79 @@ const CalcLeftSide = () => {
   const isTablet = useMediaQuery('(min-width:768px) and (max-width:1279px)');
   const isDisktop = useMediaQuery('((min-width:1280px))');
 
+  let meinBoxWidth = '320px';
+  let meinBoxHeight = '453px';
+  let meinBoxPadding = '0px 0px 0px 0px';
+  let meinBoxMargin = '0px auto 0px auto';
+
+  let listBoxWidth = '320px';
+  let listBoxHeight = '453px';
+  let listBoxPadding = '33px 14px 60px 20px';
+  let listBoxMargin = '0px auto 0px auto';
+  let listBoxGap = '8px';
+  let listBoxGapButtonDelite = '8px';
+  let listBoxMarginBottom = '60px';
+
+  let titleWidth = '130px';
+  let weightWidth = '49px';
+  let kcalWidth = '74px';
+
   if (isTablet) {
+    meinBoxWidth = '768px';
+    meinBoxHeight = '594px';
+    meinBoxPadding = '100px 126px 55px 32px';
+    meinBoxMargin = '0px auto 0px auto';
+
+    listBoxWidth = '610px';
+    listBoxHeight = '250px';
+    listBoxPadding = '0px auto 0px 0px';
+    listBoxGap = '35px';
+    listBoxGapButtonDelite = '31px';
+    listBoxMarginBottom = '0px';
+
+    titleWidth = '240px';
+    weightWidth = '104px';
+    kcalWidth = '105px';
   }
 
   if (isDisktop) {
+    meinBoxWidth = '763px';
+    meinBoxHeight = '850px';
+    meinBoxPadding = '293px 120px 56px 16px';
+    meinBoxMargin = '0px auto 0px auto';
+
+    listBoxWidth = '624px';
+    listBoxHeight = '279px';
+    listBoxPadding = '0px auto 0px 0px';
+    listBoxGap = '40px';
+    listBoxGapButtonDelite = '31px';
+    listBoxMarginBottom = '0px';
+
+    titleWidth = '240px';
+    weightWidth = '104px';
+    kcalWidth = '105px';
   }
 
   return (
     <Box
       sx={{
-        width: '320px',
-        height: '453px',
+        width: meinBoxWidth,
+        height: meinBoxHeight,
+        padding: meinBoxPadding,
+        margin: meinBoxMargin,
       }}
     >
-      <Box
-        sx={{
-          width: '320px',
-          padding: '33px 14px 60px 20px',
-          overflowY: 'scroll',
-          height: '453px',
-
-          '&::-webkit-scrollbar': {
-            width: '6px',
-          },
-          '&::-webkit-scrollbar-track': {
-            background: 'transporent',
-          },
-
-          '&::-webkit-scrollbar-thumb': {
-            width: '6px',
-            backgroundColor: '#264061',
-            borderRadius: '20px',
-          },
-        }}
-      >
+      {(isTablet || isDisktop) && (
         <Box
           sx={{
             fontWeight: '700',
-            fontSize: '18px',
-            lineHeight: '22px',
+            fontSize: '34px',
+            lineHeight: '41px',
             color: '#212121',
             display: 'flex',
             gap: '20px',
-            marginBottom: '32px',
+            marginBottom: '60px',
+            alignItems: 'center',
           }}
         >
           <span>20.06.2020</span>
@@ -250,9 +282,75 @@ const CalcLeftSide = () => {
             />
           </svg>
         </Box>
+      )}
+      {(isTablet || isDisktop) && (
         <Box
           sx={{
+            display: 'flex',
+            alignItems: 'center',
             marginBottom: '60px',
+            gap: '87px',
+          }}
+        >
+          <AddProdactsInput></AddProdactsInput>
+          <ButtonAdd />
+        </Box>
+      )}
+      <Box
+        sx={{
+          width: listBoxWidth,
+          padding: listBoxPadding,
+          height: listBoxHeight,
+          margin: listBoxMargin,
+
+          overflowY: 'scroll',
+          '&::-webkit-scrollbar': {
+            width: '6px',
+          },
+          '&::-webkit-scrollbar-track': {
+            background: '#F0F1F3',
+          },
+
+          '&::-webkit-scrollbar-thumb': {
+            width: '6px',
+            backgroundColor: '#264061',
+            borderRadius: '20px',
+          },
+        }}
+      >
+        {!isTablet && !isDisktop && (
+          <Box
+            sx={{
+              fontWeight: '700',
+              fontSize: '18px',
+              lineHeight: '22px',
+              color: '#212121',
+              display: 'flex',
+              gap: '20px',
+              marginBottom: '32px',
+            }}
+          >
+            <span>20.06.2020</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+            >
+              <path
+                fill="#9B9FAA"
+                d="M15 9h-2v2h2V9ZM11 9H9v2h2V9ZM7 9H5v2h2V9Z"
+              />
+              <path
+                fill="#9B9FAA"
+                d="M17 2h-1V0h-2v2H6V0H4v2H3c-1.11 0-1.99.9-1.99 2L1 18a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2Zm0 16H3V7h14v11Z"
+              />
+            </svg>
+          </Box>
+        )}
+        <Box
+          sx={{
+            marginBottom: listBoxMarginBottom,
           }}
         >
           <ul>
@@ -263,24 +361,24 @@ const CalcLeftSide = () => {
                   <Box
                     sx={{
                       display: 'flex',
-                      gap: '8px',
+                      gap: listBoxGapButtonDelite,
                     }}
                   >
                     <Box
                       sx={{
                         display: 'flex',
-                        gap: '8px',
+                        gap: listBoxGap,
                       }}
                     >
-                      <Box className="params" sx={{ width: '130px' }}>
+                      <Box className="params" sx={{ width: titleWidth }}>
                         {title}
                       </Box>
-                      <Box className="params" sx={{ width: '49px' }}>
+                      <Box className="params" sx={{ width: weightWidth }}>
                         {weight} g
                       </Box>
                       <Box
                         className="params"
-                        sx={{ width: '74px', textAlign: 'right' }}
+                        sx={{ width: kcalWidth, textAlign: 'right' }}
                       >
                         {kcal} kcal
                       </Box>
@@ -306,38 +404,10 @@ const CalcLeftSide = () => {
           </ul>
         </Box>
 
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <button className="buttonAdd">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-            >
-              <g clip-path="url(#a)">
-                <path
-                  fill="#fff"
-                  d="M18.72 12.96h-5.76v5.76h-1.92v-5.76H5.28v-1.92h5.76V5.28h1.92v5.76h5.76v1.92Z"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M.48.48h23.04v23.04H.48z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </button>
-        </Box>
+        {!isTablet && !isDisktop && <ButtonAdd />}
       </Box>
     </Box>
   );
 };
 
 export default CalcLeftSide;
-// style="width: 48px; height: 48px; background-color: var(--orange-color); border-radius: 50%;"

@@ -45,3 +45,29 @@
 
   background: #e0e0e0;
 }
+
+.lebel {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+
+  color: #9b9faa;
+}
+
+.lebelProduct {
+  width: 240px;
+}
+
+.lebelGrams {
+  width: 106px;
+  text-align: right;
+}
+
+.input {
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+}
