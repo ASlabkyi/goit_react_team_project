@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CalculatorWrapper = styled.div`
-  /* @media (min-width: 320px) {
+  @media (min-width: 320px) {
     margin: 0 auto;
   }
 
@@ -12,5 +12,5 @@ export const CalculatorWrapper = styled.div`
 
   @media (min-width: 1280px) {
     flex-direction: row;
-  } */
+  }
 `;
