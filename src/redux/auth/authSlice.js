@@ -19,6 +19,7 @@ const initialState = {
   sid: '',
   isLoggedIn: false,
   isRefreshing: false,
+  id: null,
 };
 
 export const authSlice = createSlice({
@@ -26,18 +27,19 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: builder =>
     builder
-      .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.accessToken = action.payload.accessToken;
-        state.refreshToken = action.payload.refreshToken;
-        state.sessionId = action.payload.sid;
-        state.isLoggedIn = true;
-      })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload;
         state.token = action.payload.accessToken;
         state.sid = action.payload.sid;
         state.refreshToken = action.payload.refreshToken;
+        state.isLoggedIn = true;
+        state.id = action.payload.user.id;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.sessionId = action.payload.sid;
         state.isLoggedIn = true;
       })
       .addCase(logout.fulfilled, (state, action) => {
