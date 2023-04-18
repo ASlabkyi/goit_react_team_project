@@ -29,7 +29,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedReducer,
     dailyRate: dailyRateSlice.reducer,
-    product: productReducer,
+    product: productReducer.reducer,
     dayInfo: dayInfoSlice.reducer,
     userInfo: userInfoSlice.reducer,
     modalOpenedReducer: modalOpenedReducer.reducer,
