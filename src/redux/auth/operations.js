@@ -4,7 +4,7 @@ import { userRefresh, userGetInfo } from 'API';
 
 axios.defaults.baseURL = process.env.REACT_APP_URL;
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -65,13 +65,13 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   token.set(refreshToken);
 
   try {
+    console.log(1);
     const { data } = await userRefresh({
       sid,
     });
-    token.set(data.newAccessToken);
 
+    token.set(data.newAccessToken);
     const user = await userGetInfo();
-    console.log(user);
 
     thunkAPI.dispatch(userGetInfo());
 
