@@ -12,7 +12,7 @@ export const UserMobileMenu = () => {
     <>
       <NicMenuWrapper>
         {' '}
-        <Back to={'/'}>
+        <Back to={'/diary'}>
           <IoReturnDownBackSharp />
         </Back>
         <MobileLink>
