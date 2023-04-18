@@ -20,7 +20,7 @@ import { modalOpenedReducer } from './modal/modalOpenedSlice';
 const persistConfig = {
   key: 'token',
   storage,
-  whitelist: ['accessToken'],
+  whitelist: ['sid', 'refreshToken', 'token'],
 };
 
 const persistedReducer = persistReducer(persistConfig, authReducer);
