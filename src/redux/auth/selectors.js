@@ -10,7 +10,7 @@ export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 
 export const selectIsFetching = state => state.auth.isFetchingCurrent;
 
-export const selectId = state => state.auth.user.id;
+export const selectId = state => state.auth.id;
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 
