@@ -22,6 +22,7 @@ export const dayInfoSlice = createSlice({
         // state.eatenProducts = payload.eatenProducts;
         // state.date = payload.date;
         // state.daySummary = payload.daySummary;
+
         state.daySummary = payload;
         state.isLoading = false;
       })

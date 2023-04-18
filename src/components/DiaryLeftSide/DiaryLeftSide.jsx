@@ -3,15 +3,11 @@ import ButtonAdd from './buttonAdd';
 import './DiaryLeftSide.css';
 
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts, addProduct } from 'redux/product/operations';
-import { selectProducts } from 'redux/product/selectors';
-import moment from 'moment/moment';
-import DairyAddProductForm from 'components/DairyAddProduct/DairyAddProduct';
-import Calendar from 'react-calendar';
+import { useDispatch } from 'react-redux';
 import 'react-calendar/dist/Calendar.css';
 import DateAndCalendar from './DateAndCalendar';
 import ListOfProdacts from './ListOfProdacts';
+import { setSearchProduct } from 'redux/product/operations';
 
 const DiaryLeftSide = () => {
   const isTablet = useMediaQuery('(min-width:768px) and (max-width:1279px)');
@@ -35,42 +31,19 @@ const DiaryLeftSide = () => {
     meinBoxPadding = '293px 120px 56px 16px';
     meinBoxMargin = '0px auto 0px auto';
   }
-  ///////////////////
-  // const dispatch = useDispatch();
-  // const [weight, setWeight] = useState('');
-  // const [title, setTitle] = useState('');
-  // const products = useSelector(selectProducts);
-  // const date = moment(new Date()).format('yyyy-MM-DD');
 
-  // useEffect(() => {
-  //   if (title.length >= 2) dispatch(fetchProducts(title));
-  // }, [dispatch, title]);
+  const [search, setSearch] = useState('');
+  const dispatch = useDispatch();
 
-  // const handleChangeProduct = e => {
-  //   const { value } = e.currentTarget;
-  //   setTitle(value);
-  // };
-  // const handleChangeWeight = e => {
-  //   const { value } = e.currentTarget;
-  //   setWeight(value);
-  // };
+  const handleChange = e => {
+    const value = e.target.value;
 
-  // const reset = () => {
-  //   setTitle('');
-  //   setWeight('');
-  // };
+    setSearch(value);
+  };
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   const productId = products.find(prod => prod.title.ua === title)._id;
-  //   const newProduct = {
-  //     date,
-  //     productId,
-  //     weight,
-  //   };
-  //   dispatch(addProduct(newProduct));
-  //   reset();
-  // }
+  useEffect(() => {
+    dispatch(setSearchProduct(search));
+  }, [dispatch, search]);
 
   return (
     <>
@@ -100,11 +73,11 @@ const DiaryLeftSide = () => {
               <label className="label labelProduct">
                 Enter product name
                 <input
-                  // onChange={handleChangeProduct}
+                  onChange={handleChange}
                   type="text"
                   className="input"
                   name="title"
-                  // value={title}
+                  value={search}
                   list="listProducts"
                   required
                 />

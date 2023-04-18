@@ -8,7 +8,7 @@ export const setFetchDay = createAsyncThunk(
   async (date, thunkAPI) => {
     // const { date } = data;
     const { token: newToken } = thunkAPI.getState().auth;
-    console.log(newToken);
+
     try {
       const response = await fetchDay(date);
 

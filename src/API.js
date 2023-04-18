@@ -29,3 +29,8 @@ export const fetchDay = async dayToday => {
   const { data } = await axios.post('/day/info', dayToday);
   return data;
 };
+
+export const searchProduct = async value => {
+  const res = await axios.get(`/product?search=${value}`);
+  return res;
+};
