@@ -82,23 +82,20 @@ const ModalWithButton = ({ buttonText, className, children }) => {
               <div className="modal-content">
                 <h2 className="title"> Your recommended daily calorie intake is</h2>
                 <p className="kcal">
-                  <span className="kcal-number">{dailyRate}</span>
+                  <span className="kcal-number"></span>
                   <span className="kcal-text">kcal</span>
                 </p>
-                {notAllowedProducts.length > 0 && (
+                {false && (
                   <div className="recomendation">
                     <p className="recomendation__title">Foods you should not eat</p>
                     <ol className="recomendation__list">
-                      {notAllowedProducts.map(pr => (
-                        <li className="recomendation__item" key={nanoid()}>
-                          {pr}
-                        </li>
-                      ))}
+                      <li className="recomendation__item">
+                      </li>
                     </ol>
                   </div>
                 )}
                 <div className="button-container">
-                  <Button className="orange" type="button" onClick={clickHandler}>
+                  <Button className="orange" type="button">
                     Start losing weight
                   </Button>
                 </div>
