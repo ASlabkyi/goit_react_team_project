@@ -1,11 +1,14 @@
 import { Box, useMediaQuery } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { useDispatch } from 'react-redux';
+import { setFetchDay } from 'redux/dayInfo/operations';
 
 const DateAndCalendar = () => {
   const isTablet = useMediaQuery('(min-width:768px) and (max-width:1279px)');
   const isDisktop = useMediaQuery('((min-width:1280px))');
+  const dispatch = useDispatch();
 
   let topCalendar = '50px';
   let leftCalendar = '-25px';
@@ -24,11 +27,18 @@ const DateAndCalendar = () => {
   const day = value.getDate();
   const month = value.getMonth() + 1;
   const year = value.getFullYear();
+
   const formattedDate = `${day < 10 ? '0' : ''}${day}.${
     month < 10 ? '0' : ''
   }${month}.${year}`; // "18.04.2023"
 
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchFormatData = { date: value.toISOString().split('T')[0] };
+    console.log(fetchFormatData); // "2023-04-18"
+    dispatch(setFetchDay(fetchFormatData));
+  }, [dispatch, value]);
 
   function openCloseCalendar() {
     setIsCalendarOpen(!isCalendarOpen);

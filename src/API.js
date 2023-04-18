@@ -24,3 +24,13 @@ export const userGetInfo = async () => {
   const { data } = await axios.get('/user');
   return data;
 };
+
+export const fetchDay = async dayToday => {
+  const { data } = await axios.post('/day/info', dayToday);
+  return data;
+};
+
+export const searchProduct = async value => {
+  const res = await axios.get(`/product?search=${value}`);
+  return res;
+};
