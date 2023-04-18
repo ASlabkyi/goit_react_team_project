@@ -6,7 +6,6 @@ import DiaryLeftSide from 'components/DiaryLeftSide/DiaryLeftSide';
 const Diary = () => {
   return (
     <DiaryWrapper>
-      {/* <DiaryList /> */}
       <DiaryLeftSide />
       <CalcRightSide />
     </DiaryWrapper>
