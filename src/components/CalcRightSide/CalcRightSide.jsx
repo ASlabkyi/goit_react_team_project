@@ -1,10 +1,16 @@
 import { Box, useMediaQuery } from '@mui/material';
 import imageDesktop from '../../images/bg-pictures/desktop/side-bar-leaves.png';
 import imageTablet from '../../images/bg-pictures/tablet/sideBarLeaves768_1x.png';
+import { useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 
 const CalcRightSide = () => {
   const isTablet = useMediaQuery('(min-width:768px) and (max-width:1279px)');
   const isDisktop = useMediaQuery('((min-width:1280px))');
+  const notRecomended = useSelector(
+    state => state.dailyRate.notAllowedProducts
+  );
+  const dailyRate = useSelector(state => state.dailyRate.dailyRate?.dailyRate);
 
   let notRecommendedFood = false;
 
@@ -109,7 +115,7 @@ const CalcRightSide = () => {
           <ul>
             <li>kcal</li>
             <li>kcal</li>
-            <li>kcal</li>
+            <li>{dailyRate ? `${dailyRate}` : `0000`} kcal</li>
             <li>%</li>
           </ul>
         </Box>
@@ -136,16 +142,15 @@ const CalcRightSide = () => {
             color: 'var(--gray-text-color)',
           }}
         >
-          {notRecommendedFood ? (
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          ) : (
+          {/* {notRecommendedFood ? ( */}
+          <ul>
+            {notRecomended.slice(0, 5).map(el => (
+              <li key={nanoid()}>{el}</li>
+            ))}
+          </ul>
+          {/* ) : (
             <p>Your diet will be displayed here</p>
-          )}
+          )} */}
         </Box>
       </Box>
 
