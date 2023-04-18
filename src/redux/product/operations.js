@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from 'redux/auth/operations';
-import { searchProduct } from 'API';
+import { searchProduct, addProduct } from 'API';
 
 export const setSearchProduct = createAsyncThunk(
   'product/search',
@@ -11,6 +11,21 @@ export const setSearchProduct = createAsyncThunk(
     try {
       const { data } = await searchProduct(search);
       console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const setAddProduct = createAsyncThunk(
+  'product/add',
+  async (product, thunkAPI) => {
+    const { token: newToken } = thunkAPI.getState().auth;
+
+    token.set(newToken);
+    try {
+      const { data } = await addProduct(product);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

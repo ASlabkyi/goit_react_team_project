@@ -34,3 +34,8 @@ export const searchProduct = async value => {
   const res = await axios.get(`/product?search=${value}`);
   return res;
 };
+
+export const addProduct = async product => {
+  const res = await axios.post('/day', product);
+  return res;
+};
