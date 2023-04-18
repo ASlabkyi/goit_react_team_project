@@ -1,4 +1,5 @@
 import { Box, useMediaQuery } from '@mui/material';
+import ButtonAdd from './buttonAdd';
 import './DiaryLeftSide.css';
 
 import { useEffect, useState } from 'react';
@@ -91,7 +92,37 @@ const DiaryLeftSide = () => {
               gap: '87px',
             }}
           >
-            <DairyAddProductForm></DairyAddProductForm>
+            <form
+              style={{ display: 'contents' }}
+              autoComplete="off"
+              // onSubmit={handleSubmit}
+            >
+              <label className="label labelProduct">
+                Enter product name
+                <input
+                  // onChange={handleChangeProduct}
+                  type="text"
+                  className="input"
+                  name="title"
+                  // value={title}
+                  list="listProducts"
+                  required
+                />
+              </label>
+              <label className="label labelGrams">
+                Grams
+                <input
+                  // onChange={handleChangeWeight}
+                  type="number"
+                  name="weight"
+                  // value={weight}
+                  required
+                  className="input"
+                />
+              </label>
+              <ButtonAdd />
+            </form>
+            {/* <DairyAddProductForm></DairyAddProductForm> */}
           </Box>
         )}
         <ListOfProdacts />
