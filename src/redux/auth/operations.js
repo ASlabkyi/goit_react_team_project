@@ -70,16 +70,17 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     });
     token.set(data.newAccessToken);
 
-    // const user = await userGetInfo();
-    // console.log(user);
+    const user = await userGetInfo();
+    console.log(user);
 
     thunkAPI.dispatch(userGetInfo());
 
-    return data;
-    // user: user.data,
-    // sid: data.sid,
-    // refreshToken: data.newRefreshtoken,
-    // accessToken: data.newAccessToken,
+    return {
+      user: user.username,
+      sid: data.sid,
+      newRefreshToken: data.newRefreshtoken,
+      newAccessToken: data.newAccessToken,
+    };
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
