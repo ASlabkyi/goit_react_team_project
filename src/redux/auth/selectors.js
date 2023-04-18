@@ -9,3 +9,5 @@ export const selectSessionId = state => state.auth.sessionId;
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 
 export const selectIsFetching = state => state.auth.isFetchingCurrent;
+
+export const selectId = state => state.auth.user.id;

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { register, login, logout } from './operations';
 
 const initialState = {
-  user: { username: null, email: null, userData: {} },
+  user: { username: null, email: null, userData: {}, id: "" },
   todaySummary: {
     date: null,
     kcalLeft: null,
@@ -32,7 +32,7 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [login.fulfilled](state, action) {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       state.sessionId = action.payload.sid;

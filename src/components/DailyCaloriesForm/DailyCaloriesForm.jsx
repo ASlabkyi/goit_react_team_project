@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { calculateDailyRate } from '../../redux/dailyRate/operations';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { calculateDailyRate, calculateDailyLoggedIn } from '../../redux/dailyRate/operations';
+import { DailyCalModal } from 'components/DailyCalModal/DailyCalModal';
+import { selectId, selectIsLoggedIn } from '../../redux/auth/selectors'
 import {
   FormControl,
   useMediaQuery,
@@ -13,35 +14,40 @@ import {
   Radio,
   Box,
   TextField,
-  Modal,
 } from '@mui/material';
 
 const DailyCaloriesForm = () => {
   const dispatch = useDispatch();
-
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  //const token = useSelector(selectAccessToken);
+  const id = useSelector(selectId);
+  console.log(id);
+  
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     if (height !== '' && age !== '' && weight !== '' && desiredWeight !== '' && window.innerWidth > 767) {
       setOpen(true);
     }
-  };  const handleClose = () => setOpen(false);
+  };  
+  const handleClose = () => setOpen(false);
 
-  const [height, setHeight] = useState('');
+  const [height, setHeight] = useState(Number(''));
   const [heightError, setHeightError] = useState('');
-  const [age, setAge] = useState('');
+  const [age, setAge] = useState(Number(''));
   const [ageError, setAgeError] = useState('');
-  const [weight, setWeight] = useState('');
+  const [weight, setWeight] = useState(Number(''));
   const [weightError, setWeightError] = useState('');
-  const [desiredWeight, setDesiredWeight] = useState('');
+  const [desiredWeight, setDesiredWeight] = useState(Number(''));
   const [desiredWeightError, setDesiredWeightError] = useState('');
-  const [bloodType, setBloodType] = useState('');
+  const [bloodType, setBloodType] = useState(Number(1));
   const [bloodTypeError, setBloodTypeError] = useState('');
+  console.log(bloodType);
 
   const handleHeightChange = event => {
     const input = event.target.value;
     const regex = /^\d*\.?\d*$/;
     if (regex.test(input)) {
-      setHeight(input);
+      setHeight(parseInt(input));
       setHeightError('');
     } else {
       setHeightError('Please enter a valid number, on example "173"');
@@ -52,7 +58,7 @@ const DailyCaloriesForm = () => {
     const input = event.target.value;
     const regex = /^\d+$/;
     if (regex.test(input)) {
-      setAge(input);
+      setAge(parseInt(input));
       setAgeError('');
     } else {
       setAgeError('Please enter a valid number, on example "30"');
@@ -63,7 +69,7 @@ const DailyCaloriesForm = () => {
     const input = event.target.value;
     const regex = /^\d*\.?\d*$/;
     if (regex.test(input)) {
-      setWeight(input);
+      setWeight(parseInt(input));
       setWeightError('');
     } else {
       setWeightError('Please enter a valid number, on example "70"');
@@ -74,7 +80,7 @@ const DailyCaloriesForm = () => {
     const input = event.target.value;
     const regex = /^\d*\.?\d*$/;
     if (regex.test(input)) {
-      setDesiredWeight(input);
+      setDesiredWeight(parseInt(input));
       setDesiredWeightError('');
     } else {
       setDesiredWeightError('Please enter a valid number, on example "65"');
@@ -82,24 +88,39 @@ const DailyCaloriesForm = () => {
   };
 
   const handleBloodTypeChange = event => {
-    setBloodType(event.target.value);
+    setBloodType(parseInt(event.target.value));
     setBloodTypeError('');
-  };
-
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '672px',
-    height: 'auto',
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    p: 4,
   };
 
   const isMobile = useMediaQuery('(max-width:767px)');
   const flexDirection = isMobile ? 'column' : 'row';
+
+  const [dailyRate, setDailyRate] = useState(0);
+  const [notAllowedProducts, setNotAllowedProducts] = useState(0);
+  const data = { height, weight, age, desiredWeight, bloodType };
+  console.log(data);
+
+  const handleCalculate = () => {
+    if (isLoggedIn) {
+      dispatch(calculateDailyLoggedIn({id, data}))
+        .unwrap()
+        .then(result => {
+          setDailyRate(result.dailyRate);
+          setNotAllowedProducts(result.notAllowedProducts);
+          setOpen(true);
+        })
+        .catch(error => console.log('error', error));
+    } else {
+      dispatch(calculateDailyRate(data))
+        .unwrap()
+        .then(result => {
+          setDailyRate(result.dailyRate);
+          setNotAllowedProducts(result.notAllowedProducts);
+          setOpen(true);
+        })
+        .catch(error => console.log('error', error));
+    }
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -128,17 +149,12 @@ const DailyCaloriesForm = () => {
     }
 
     if (!formErrors) {
-      if (window.innerWidth > 767) {
-        dispatch(
-          calculateDailyRate({ height, age, weight, desiredWeight, bloodType })
-        );
-        setOpen(true);
+      handleCalculate();
       setHeight('');
       setAge('');
       setWeight('');
       setDesiredWeight('');
       setBloodType('');
-      }
     }
   };
 
@@ -189,8 +205,8 @@ const DailyCaloriesForm = () => {
               <TextField
                 id="standard-multiline-flexible"
                 label="Height"
-                multiline
                 variant="standard"
+                type='number'
                 value={height}
                 onChange={handleHeightChange}
                 required={true}
@@ -212,8 +228,8 @@ const DailyCaloriesForm = () => {
               <TextField
                 id="standard-textarea"
                 label="Age"
-                multiline
                 variant="standard"
+                type='number'
                 value={age}
                 onChange={handleAgeChange}
                 required={true}
@@ -235,7 +251,7 @@ const DailyCaloriesForm = () => {
               <TextField
                 id="standard-textarea"
                 label="Current weight"
-                multiline
+                type='number'
                 variant="standard"
                 value={weight}
                 onChange={handleWeightChange}
@@ -260,7 +276,7 @@ const DailyCaloriesForm = () => {
               <TextField
                 id="standard-textarea"
                 label="Desired weight"
-                multiline
+                type='number'
                 variant="standard"
                 value={desiredWeight}
                 onChange={handleDesiredWeightChange}
@@ -359,23 +375,14 @@ const DailyCaloriesForm = () => {
             >
               Start losing weight
             </Button>
-            <Modal
-              open={open}
-              onClose={handleClose}
+            <DailyCalModal 
+              open={open} 
+              handleClose={handleClose}
               aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description">
-              <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2" fontFamily='Verdana' fontStyle='normal' fontWeight='700' fontSize='26px' lineHeight='140%'>
-                Your recommended daily calorie intake is
-                </Typography>
-                <Typography id="modal-modal-title" variant="h6" component="h2" fontFamily='Verdana' fontStyle='normal' fontWeight='700' fontSize='26px' lineHeight='140%'>
-                Here will be number of kcal
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                </Typography>
-              </Box>
-            </Modal>
+              aria-describedby="modal-modal-description"
+              dailyRate={dailyRate}
+              notAllowedProducts={notAllowedProducts}
+              />
           </Box>
         </Box>
       </Box>
