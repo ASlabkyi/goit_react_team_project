@@ -18,25 +18,25 @@ export const App = () => {
 
         <Route
           path="/login"
-          element={<PublicRout redirectTo="/login" component={<Login />} />}
+          element={<PublicRout redirectTo="/diary" component={<Login />} />}
         />
 
         <Route
           path="/register"
           element={
-            <PublicRout redirectTo="/register" component={<Registration />} />
+            <PublicRout redirectTo="/diary" component={<Registration />} />
           }
         />
 
         <Route
           path="/diary"
-          element={<PrivateRout redirectTo="/diary" component={<Diary />} />}
+          element={<PrivateRout redirectTo="/login" component={<Diary />} />}
         />
 
         <Route
           path="/calculator"
           element={
-            <PrivateRout redirectTo="/calculator" component={<Calculator />} />
+            <PrivateRout redirectTo="/login" component={<Calculator />} />
           }
         />
       </Route>

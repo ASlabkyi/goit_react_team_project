@@ -21,6 +21,7 @@ import { logout } from 'redux/auth/operations';
 
 export const UserMenu = () => {
   const nic = useSelector(selectUser).username;
+  console.log(nic);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch();
 
