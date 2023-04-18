@@ -44,7 +44,7 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.user = { username: null, email: null, userData: {} };
-        state.isRefreshing = false;
+        // state.isRefreshing = false;
         state.token = null;
         state.sid = null;
         state.refreshToken = null;
@@ -59,9 +59,9 @@ export const authSlice = createSlice({
         console.log(payload);
         // state.user = payload.user;
         state.isLoggedIn = true;
-        state.token = payload.accessToken;
+        state.token = payload.newAccessToken;
         state.sid = payload.sid;
-        state.refreshToken = payload.refreshToken;
+        state.refreshToken = payload.newRefreshToken;
         state.isLoading = false;
         state.isRefreshing = false;
       }),
