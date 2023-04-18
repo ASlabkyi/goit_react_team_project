@@ -1,4 +1,4 @@
-export const selectUser = state => state.auth.user;
+export const selectUser = state => state.auth.user.user;
 
 export const selectAccessToken = state => state.auth.accessToken;
 
