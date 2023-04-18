@@ -19,7 +19,6 @@ import {
 const DailyCaloriesForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  //const token = useSelector(selectAccessToken);
   const id = useSelector(selectId);
   console.log(id);
   
