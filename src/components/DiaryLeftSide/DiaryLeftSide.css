@@ -59,8 +59,35 @@
 }
 
 .labelProduct {
+  position: relative;
   width: 240px;
   /* sdad */
+}
+
+.searchProducts {
+  position: absolute;
+  top: 42px;
+  z-index: 10;
+  background-color: aqua;
+  overflow-y: scroll;
+
+  width: 240px;
+  padding: 5px;
+  height: 100px;
+}
+
+.searchProducts::-webkit-scrollbar {
+  width: '6px';
+}
+
+.searchProducts::-webkit-scrollbar-track {
+  background: '#F0F1F3';
+}
+
+.searchProducts::-webkit-scrollbar-thumb {
+  width: '6px';
+  background-color: '#264061';
+  border-radius: '20px';
 }
 
 .labelGrams {

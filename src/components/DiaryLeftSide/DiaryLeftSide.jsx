@@ -12,6 +12,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import DateAndCalendar from './DateAndCalendar';
 import ListOfProdacts from './ListOfProdacts';
+import { nanoid } from '@reduxjs/toolkit';
 
 const DiaryLeftSide = () => {
   const isTablet = useMediaQuery('(min-width:768px) and (max-width:1279px)');
@@ -99,6 +100,13 @@ const DiaryLeftSide = () => {
             >
               <label className="label labelProduct">
                 Enter product name
+                <div className="searchProducts">
+                  <ul>
+                    {/* {data.map(el => (
+                      <li key={nanoid()}>{el}</li>
+                    ))} */}
+                  </ul>
+                </div>
                 <input
                   // onChange={handleChangeProduct}
                   type="text"
