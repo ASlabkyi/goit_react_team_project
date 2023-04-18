@@ -142,15 +142,15 @@ const CalcRightSide = () => {
             color: 'var(--gray-text-color)',
           }}
         >
-          {/* {notRecommendedFood ? ( */}
-          <ul>
-            {notRecomended.slice(0, 5).map(el => (
-              <li key={nanoid()}>{el}</li>
-            ))}
-          </ul>
-          {/* ) : (
+          {notRecomended.lenght > 0 ? (
+            <ul>
+              {notRecomended.slice(0, 5).map(el => (
+                <li key={nanoid()}>{el}</li>
+              ))}
+            </ul>
+          ) : (
             <p>Your diet will be displayed here</p>
-          )} */}
+          )}
         </Box>
       </Box>
 
