@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout } from './operations';
+import { register, login, logout, refresh } from './operations';
 
 const initialState = {
-  user: { username: null, email: null, userData: {}, id: "" },
+  user: { username: null, email: null, userData: {}, id: '' },
   todaySummary: {
     date: null,
     kcalLeft: null,
@@ -12,60 +12,57 @@ const initialState = {
     userId: null,
     id: null,
   },
-  id: null,
-  accessToken: null,
-  refreshToken: null,
-  sessionId: null,
+  token: null,
+  isLoading: false,
+  error: null,
+  refreshToken: '',
+  sid: '',
   isLoggedIn: false,
-  isFetchingCurrent: false,
+  isRefreshing: false,
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: {
-    [register.fulfilled](state, action) {
-      state.user = action.payload;
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
-      state.sessionId = action.payload.sid;
-      state.isLoggedIn = true;
-    },
-    [login.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
-      state.sessionId = action.payload.sid;
-      state.isLoggedIn = true;
-      state.user.userData = action.payload.userData;
-      state.todaySummary = action.payload.todaySummary;
-      state.id = action.payload.user.id;
-    },
-    [logout.fulfilled](state, action) {
-      state.user = { username: null, email: null, userData: {} };
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
-      state.sessionId = null;
-      state.isLoggedIn = false;
-    },
-
-    //     [fetchCurrentUser.pending](state) {
-    //       state.isFetchingCurrent = true;
-    //     },
-    //     [fetchCurrentUser.fulfilled](state, action) {
-    //       const { data, refresh } = action.payload;
-
-    //       state.user = data;
-    //       state.accessToken = refresh.newAccessToken;
-    //       state.refreshToken = refresh.newRefreshToken;
-    //       state.sessionId = refresh.sid;
-    //       state.isFetchingCurrent = false;
-    //       state.isLoggedIn = true;
-    //     },
-    //     [fetchCurrentUser.rejected](state) {
-    //       state.isFetchingCurrent = false;
-    //     },
-  },
+  extraReducers: builder =>
+    builder
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.sessionId = action.payload.sid;
+        state.isLoggedIn = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.token = action.payload.accessToken;
+        state.sid = action.payload.sid;
+        state.refreshToken = action.payload.refreshToken;
+        state.isLoggedIn = true;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.user = { username: null, email: null, userData: {} };
+        state.isRefreshing = false;
+        state.token = null;
+        state.sid = null;
+        state.refreshToken = null;
+        state.isLoggedIn = false;
+      })
+      .addCase(refresh.pending, state => {
+        state.isRefreshing = true;
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(refresh.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        // state.user = payload.user;
+        state.isLoggedIn = true;
+        state.token = payload.accessToken;
+        state.sid = payload.sid;
+        state.refreshToken = payload.refreshToken;
+        state.isLoading = false;
+        state.isRefreshing = false;
+      }),
 });
 
 export const authReducer = authSlice.reducer;

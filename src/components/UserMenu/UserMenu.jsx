@@ -20,7 +20,8 @@ import { selectUser } from 'redux/auth/selectors';
 import { logout } from 'redux/auth/operations';
 
 export const UserMenu = () => {
-  const nic = useSelector(selectUser).name;
+  const nic = useSelector(selectUser).username;
+
   const [isOpenMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch();
 

@@ -11,8 +11,8 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
-import {dailyRateSlice} from './dailyRate/dailyRateSlice';
-import { productSlice } from './product/productsSlice';
+import { dailyRateSlice } from './dailyRate/dailyRateSlice';
+import { productReducer } from './product/productsSlice';
 import { dayInfoSlice } from './dayInfo/dayInfoSlice';
 import { userInfoSlice } from './userInfo/userInfoSlice';
 import { modalOpenedReducer } from './modal/modalOpenedSlice';
@@ -20,7 +20,7 @@ import { modalOpenedReducer } from './modal/modalOpenedSlice';
 const persistConfig = {
   key: 'token',
   storage,
-  whitelist: ['token'],
+  whitelist: ['sid', 'refreshToken', 'token'],
 };
 
 const persistedReducer = persistReducer(persistConfig, authReducer);
@@ -29,7 +29,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedReducer,
     dailyRate: dailyRateSlice.reducer,
-    product: productSlice.reducer,
+    product: productReducer,
     dayInfo: dayInfoSlice.reducer,
     userInfo: userInfoSlice.reducer,
     modalOpenedReducer: modalOpenedReducer.reducer,
