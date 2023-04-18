@@ -23,6 +23,7 @@ const DailyCaloriesForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const id = useSelector(selectId);
+
   console.log(id);
 
   const [open, setOpen] = React.useState(false);
