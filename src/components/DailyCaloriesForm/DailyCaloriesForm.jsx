@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { calculateDailyRate, calculateDailyLoggedIn } from '../../redux/dailyRate/operations';
+import {
+  calculateDailyRate,
+  calculateDailyLoggedIn,
+} from '../../redux/dailyRate/operations';
 import { DailyCalModal } from 'components/DailyCalModal/DailyCalModal';
-import { selectId, selectIsLoggedIn } from '../../redux/auth/selectors'
+import { selectId, selectIsLoggedIn } from '../../redux/auth/selectors';
 import {
   FormControl,
   useMediaQuery,
@@ -21,13 +24,19 @@ const DailyCaloriesForm = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const id = useSelector(selectId);
   console.log(id);
-  
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
-    if (height !== '' && age !== '' && weight !== '' && desiredWeight !== '' && window.innerWidth > 767) {
+    if (
+      height !== '' &&
+      age !== '' &&
+      weight !== '' &&
+      desiredWeight !== '' &&
+      window.innerWidth > 767
+    ) {
       setOpen(true);
     }
-  };  
+  };
   const handleClose = () => setOpen(false);
 
   const [height, setHeight] = useState(Number(''));
@@ -101,7 +110,7 @@ const DailyCaloriesForm = () => {
 
   const handleCalculate = () => {
     if (isLoggedIn) {
-      dispatch(calculateDailyLoggedIn({id, data}))
+      dispatch(calculateDailyLoggedIn({ id, data }))
         .unwrap()
         .then(result => {
           setDailyRate(result.dailyRate);
@@ -205,7 +214,7 @@ const DailyCaloriesForm = () => {
                 id="standard-multiline-flexible"
                 label="Height"
                 variant="standard"
-                type='number'
+                type="number"
                 value={height}
                 onChange={handleHeightChange}
                 required={true}
@@ -228,7 +237,7 @@ const DailyCaloriesForm = () => {
                 id="standard-textarea"
                 label="Age"
                 variant="standard"
-                type='number'
+                type="number"
                 value={age}
                 onChange={handleAgeChange}
                 required={true}
@@ -250,7 +259,7 @@ const DailyCaloriesForm = () => {
               <TextField
                 id="standard-textarea"
                 label="Current weight"
-                type='number'
+                type="number"
                 variant="standard"
                 value={weight}
                 onChange={handleWeightChange}
@@ -275,7 +284,7 @@ const DailyCaloriesForm = () => {
               <TextField
                 id="standard-textarea"
                 label="Desired weight"
-                type='number'
+                type="number"
                 variant="standard"
                 value={desiredWeight}
                 onChange={handleDesiredWeightChange}
@@ -374,14 +383,14 @@ const DailyCaloriesForm = () => {
             >
               Start losing weight
             </Button>
-            <DailyCalModal 
-              open={open} 
+            <DailyCalModal
+              open={open}
               handleClose={handleClose}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
               dailyRate={dailyRate}
               notAllowedProducts={notAllowedProducts}
-              />
+            />
           </Box>
         </Box>
       </Box>
