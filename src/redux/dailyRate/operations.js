@@ -12,3 +12,18 @@ export const calculateDailyRate = createAsyncThunk(
     }
   }
 );
+
+export const calculateDailyLoggedIn = createAsyncThunk(
+  'dailyRate/calculateDailyLoggedIn',
+  async (value, { rejectWithValue }) => {
+    const { id, data } = value;
+    console.log(id);
+    console.log(data);
+    try {
+      const response = await axios.post(`https://slimmom-backend.goit.global/daily-rate/${id}`, data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
