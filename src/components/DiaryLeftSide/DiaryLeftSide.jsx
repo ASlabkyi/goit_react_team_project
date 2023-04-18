@@ -72,6 +72,13 @@ const DiaryLeftSide = () => {
             >
               <label className="label labelProduct">
                 Enter product name
+                <div className="searchProducts">
+                  <ul>
+                    {/* {data.map(el => (
+                      <li key={nanoid()}>{el}</li>
+                    ))} */}
+                  </ul>
+                </div>
                 <input
                   onChange={handleChange}
                   type="text"
