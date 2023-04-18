@@ -86,3 +86,4 @@ Modal.propTypes = {
 };
 
 export default Modal;
+// export default ModalWithButton;
