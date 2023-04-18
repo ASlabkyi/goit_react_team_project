@@ -113,10 +113,12 @@ const CalcRightSide = () => {
             <li>n% of normal</li>
           </ul>
           <ul>
-            <li>kcal</li>
-            <li>kcal</li>
-            <li>{dailyRate ? `${dailyRate}` : `0000`} kcal</li>
-            <li>%</li>
+            <li style={{ textAlign: 'right' }}>000 kcal</li>
+            <li style={{ textAlign: 'right' }}>000 kcal</li>
+            <li style={{ textAlign: 'right' }}>
+              {dailyRate ? `${dailyRate}` : `000`} kcal
+            </li>
+            <li style={{ textAlign: 'right' }}>000 %</li>
           </ul>
         </Box>
       </Box>
