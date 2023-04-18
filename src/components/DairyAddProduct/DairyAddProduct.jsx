@@ -1,4 +1,9 @@
-import { useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts, addProduct } from 'redux/product/operations';
+import { selectProducts } from 'redux/product/selectors';
+
+import moment from 'moment/moment';
 import AddIcon from '@mui/icons-material/Add';
 import {
     Autocomplete,
@@ -14,32 +19,64 @@ import {
 } from './DairyAddProduct.styled';
 
 export default function DairyAddProductForm() {
-    const [query, setQuery] = useState('');
-    const [weigth, setWeigth] = useState('');
-    const [productList, setProductList] = useState([]);
-    const [selectedProduct, setSelectedProduct] = useState('');
+    const dispatch = useDispatch();
 
     const isMobile = useMediaQuery('(max-width:767px)');
-    const formEl = useRef();
-    const buttonEl = useRef();
+    const [weight, setWeight] = useState('');
+    const [title, setTitle] = useState('');
+    const products = useSelector(selectProducts);
+    const date = moment(new Date()).format('yyyy-MM-DD');
+
+    useEffect(() => {
+        if (title.length >= 2) dispatch(fetchProducts(title));
+    }, [dispatch, title]);
+
+    const handleChangeProduct = e => {
+        const { value } = e.currentTarget;
+        console.log('e: ', e.target.value);
+        setTitle(value);
+    };
+    const handleChangeWeight = e => {
+        const { value } = e.currentTarget;
+        setWeight(value);
+    };
+
+    const reset = () => {
+        setTitle('');
+        setWeight('');
+    };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        const productId = products.find(prod => prod.title.ua === title._id);
+        const newProduct = {
+            date,
+            productId,
+            weight,
+        };
+        dispatch(addProduct(newProduct));
+        reset();
+    }
+    
 
     return (
         <>
-            <FormStyled >
-                <div className="wrapper" ref={formEl}>
+            <FormStyled onSubmit={handleSubmit}>
+                <div className="wrapper">
                     <Autocomplete
                         sx={{ display: { xs: 'block', md: 'inline-block' } }}
                         disablePortal
                         id="combo-box-demo"
                         freeSolo
-                        value={query}
+                        value={title}
                         noOptionsText={"No products"}
-                        // options={'fetching data'}   TODO!!!!!!!!!!
+                        options={products}
                         renderInput={params => (
                             <FieldStyled
                                 required
                                 {...params}
-                                value={query}
+                                value={title}
+                        onChange={handleChangeProduct}
                                 id="filled-product"
                                 label={"Enter product name"}
                                 name="product"
@@ -53,6 +90,8 @@ export default function DairyAddProductForm() {
                         id="filled-number"
                         name="grams"
                         type="number"
+                        value={weight}
+                        onChange={handleChangeWeight}
                         sx={{
                             width: {
                                 xs: 280,
@@ -99,13 +138,11 @@ export default function DairyAddProductForm() {
                         }}
                         type="submit"
                         variant="contained"
-                        disabled={query && weigth && selectedProduct ? false : true}
                     >
                         Add
                     </ButtonStyled>
                 </div>
                 <FabStyled
-                    ref={buttonEl}
                     aria-label="add"
                     type={isMobile ? 'button' : 'submit'}
                 >
@@ -115,3 +152,45 @@ export default function DairyAddProductForm() {
         </>
     );
 }
+
+// const DairyAddProduct = () => {
+    
+
+//     return (
+//         <form autoComplete="off" onSubmit={handleSubmit}>
+//             <Wrap>
+//                 <AddTitleInput
+//                     onChange={handleChangeProduct}
+//                     type="text"
+//                     name="title"
+//                     value={title}
+//                     placeholder="Enter product name"
+//                     list="listProducts"
+//                     required
+//                 />
+//                 <datalist id="listProducts">
+//                     {products?.length > 0 &&
+//                         products?.map(prod => {
+//                             return (
+//                                 <option key={prod._id} value={prod.title.ua} id={prod._id} />
+//                             );
+//                         })}
+//                 </datalist>
+
+//                 <AddWeightInput
+//                     onChange={handleChangeWeight}
+//                     type="number"
+//                     name="weight"
+//                     value={weight}
+//                     placeholder="Grams"
+//                     required
+//                 />
+
+//                 <AddBtn type="submit">
+//                     <img src={Add} alt="Add button" />
+//                 </AddBtn>
+//             </Wrap>
+//         </form>
+//     );
+// };
+// export default DairyAddProduct;

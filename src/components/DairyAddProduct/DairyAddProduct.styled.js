@@ -87,25 +87,25 @@ export const FormStyled = styled.form`
 `;
 
 export const ButtonStyled = styled(Button)({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: '1px solid var(--orange-color)',
-    borderRadius: 30,
-    width: 182,
-    fontWeight: 700,
-    fontSize: '14px',
-    lineHeight: 1.2,
-    textTransform: 'none',
-    paddingTop: '13px',
-    paddingBottom: '13px',
-    cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: '1px solid var(--orange-color)',
+  borderRadius: 30,
+  width: 182,
+  fontWeight: 700,
+  fontSize: '14px',
+  lineHeight: 1.2,
+  textTransform: 'none',
+  paddingTop: '13px',
+  paddingBottom: '13px',
+  cursor: 'pointer',
 
-    '&:hover, &:focus': {
-        backgroundColor: '#f28f1d',
-    },
-    '&:disabled': {
-        backgroundColor: 'rgba(0, 0, 0, 0.12)',
-        border: '1px solid rgba(0, 0, 0, 0.12)',
-    },
+  '&:hover, &:focus': {
+    backgroundColor: '#f28f1d',
+  },
+  '&:disabled': {
+    backgroundColor: 'rgba(0, 0, 0, 0.12)',
+    border: '1px solid rgba(0, 0, 0, 0.12)',
+  },
 });
