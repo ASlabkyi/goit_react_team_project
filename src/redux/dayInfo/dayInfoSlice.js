@@ -25,13 +25,8 @@ export const dayInfoSlice = createSlice({
         state.error = null;
       })
       .addCase(setFetchDay.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        // state.id = payload.id;
-        // state.eatenProducts = payload.eatenProducts;
-        // state.date = payload.date;
         state.daySummary = payload.daySummary;
-
-        // state.daySummary = payload;
+        state.eatenProducts = payload.eatenProducts;
         state.isLoading = false;
       })
       .addCase(setFetchDay.rejected, (state, { payload }) => {
@@ -59,7 +54,6 @@ export const dayInfoSlice = createSlice({
       })
       .addCase(setDeleteProduct.fulfilled, (state, { payload }) => {
         state.daySummary = payload.response.newDaySummary;
-        // console.log(newProducts);
         const newProducts = state.eatenProducts.filter(
           product => product.id !== payload.id
         );

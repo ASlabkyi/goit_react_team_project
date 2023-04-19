@@ -39,7 +39,6 @@ const DiaryLeftSide = () => {
   const [productId, setProductId] = useState(null);
   const dispatch = useDispatch();
   const date = useSelector(state => state.dayInfo.date?.date);
-  // const productId = useSelector(state => state.product.products);
 
   const handleChange = e => {
     const value = e.target.value;
@@ -60,7 +59,6 @@ const DiaryLeftSide = () => {
       weight: gram,
       date,
     };
-    console.log(product);
     dispatch(setAddProduct(product));
   };
 
