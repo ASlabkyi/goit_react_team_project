@@ -70,7 +70,6 @@ const DailyCaloriesForm = () => {
       setAgeError('Please enter a valid number, on example "30"');
     }
   };
-
   const handleWeightChange = event => {
     const input = event.target.value;
     const regex = /^\d*\.?\d*$/;
