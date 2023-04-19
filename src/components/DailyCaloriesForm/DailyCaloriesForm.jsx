@@ -24,8 +24,6 @@ const DailyCaloriesForm = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const id = useSelector(selectId);
 
-  console.log(id);
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     if (
@@ -40,17 +38,16 @@ const DailyCaloriesForm = () => {
   };
   const handleClose = () => setOpen(false);
 
-  const [height, setHeight] = useState(Number(''));
+  const [height, setHeight] = useState('');
   const [heightError, setHeightError] = useState('');
-  const [age, setAge] = useState(Number(''));
+  const [age, setAge] = useState('');
   const [ageError, setAgeError] = useState('');
-  const [weight, setWeight] = useState(Number(''));
+  const [weight, setWeight] = useState('');
   const [weightError, setWeightError] = useState('');
-  const [desiredWeight, setDesiredWeight] = useState(Number(''));
+  const [desiredWeight, setDesiredWeight] = useState('');
   const [desiredWeightError, setDesiredWeightError] = useState('');
-  const [bloodType, setBloodType] = useState(Number(1));
+  const [bloodType, setBloodType] = useState(1);
   const [bloodTypeError, setBloodTypeError] = useState('');
-  console.log(bloodType);
 
   const handleHeightChange = event => {
     const input = event.target.value;
@@ -107,7 +104,6 @@ const DailyCaloriesForm = () => {
   const [dailyRate, setDailyRate] = useState(0);
   const [notAllowedProducts, setNotAllowedProducts] = useState(0);
   const data = { height, weight, age, desiredWeight, bloodType };
-  console.log(data);
 
   const handleCalculate = () => {
     if (isLoggedIn) {
@@ -166,12 +162,6 @@ const DailyCaloriesForm = () => {
       setBloodType('');
     }
   };
-
-  console.log(typeof height);
-  console.log(typeof age);
-  console.log(typeof weight);
-  console.log(typeof desiredWeight);
-  console.log(typeof bloodType);
 
   return (
     <>
