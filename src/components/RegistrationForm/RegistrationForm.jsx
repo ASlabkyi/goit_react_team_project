@@ -90,7 +90,7 @@ const Register = () => {
         onSubmit={handleSubmitRegister}
         validationSchema={schema}
       >
-        {({ values, handleChange, handleBlur }) => (
+        {({ values, handleChange, handleBlur, errors, touched }) => (
           <Form>
             <Box
               sx={{
@@ -121,6 +121,8 @@ const Register = () => {
                   required
                   onBlur={handleBlur}
                   onChange={handleChange}
+                  error={Boolean(touched.name && errors.name)}
+                  helperText={touched.name && errors.name}
                   sx={{
                     label: {
                       color: 'var(--gray-text-color)',
@@ -140,6 +142,8 @@ const Register = () => {
                   required
                   onBlur={handleBlur}
                   onChange={handleChange}
+                  error={Boolean(touched.email && errors.email)}
+                  helperText={touched.email && errors.email}
                   sx={{
                     label: {
                       color: 'var(--gray-text-color)',
@@ -160,6 +164,8 @@ const Register = () => {
                   autoComplete="off"
                   onBlur={handleBlur}
                   onChange={handleChange}
+                  error={Boolean(touched.password && errors.password)}
+                  helperText={touched.password && errors.password}
                   sx={{
                     label: {
                       color: 'var(--gray-text-color)',

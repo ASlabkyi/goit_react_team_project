@@ -1,13 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { Box } from '@mui/material';
 import * as yup from 'yup';
-import { Formik,Form } from 'formik';
-import {
-  Input,
-  LoginBtn,
-  RegisterBtn,
-  Title,
-} from './LoginForm.styled';
+import { Formik, Form } from 'formik';
+import { Input, LoginBtn, RegisterBtn, Title } from './LoginForm.styled';
 import { login } from 'redux/auth/operations';
 
 const schema = yup.object().shape({
@@ -68,7 +63,7 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
         validationSchema={schema}
       >
-        {({ values, handleChange, handleBlur }) => (
+        {({ values, handleChange, handleBlur, touched, errors }) => (
           <Form autoComplete="off">
             <Box
               sx={{
@@ -99,6 +94,8 @@ const LoginForm = () => {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.email}
+                  error={Boolean(touched.email && errors.email)}
+                  helperText={touched.email && errors.email}
                   sx={{
                     label: {
                       color: 'var(--gray-text-color)',
@@ -114,11 +111,12 @@ const LoginForm = () => {
                   label="Password"
                   variant="standard"
                   required
-                  autoComplete="off"
                   placeholder="Min 8 characters"
                   value={values.password}
                   onBlur={handleBlur}
                   onChange={handleChange}
+                  error={Boolean(touched.password && errors.password)}
+                  helperText={touched.password && errors.password}
                   sx={{
                     label: {
                       color: 'var(--gray-text-color)',
@@ -133,17 +131,20 @@ const LoginForm = () => {
               <Box
                 sx={{
                   display: 'flex',
-                  flexDirection: { xs:'column', md:'row'},
+                  flexDirection: { xs: 'column', md: 'row' },
                   marginLeft: { xs: 'auto', md: '0px' },
                   marginRight: { xs: 'auto', md: '0px' },
                 }}
               >
-                <LoginBtn type="submit" variant="contained"
+                <LoginBtn
+                  type="submit"
+                  variant="contained"
                   sx={{
                     marginBottom: { xs: '20px', md: '0px' },
                     marginRight: { md: '32px' },
                     padding: { xs: '13px 50px', lg: '13px 37px' },
-                  }}>
+                  }}
+                >
                   Log in
                 </LoginBtn>
                 <RegisterBtn
