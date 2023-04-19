@@ -62,6 +62,8 @@ const DiaryLeftSide = () => {
       date,
     };
     dispatch(setAddProduct(product));
+    setGram('');
+    setSearch('');
   };
 
   const hanldeOnClik = product => {
