@@ -85,7 +85,7 @@ const ListOfProdacts = () => {
         }}
       >
         <ul>
-          {data.map(el => {
+          {data?.map(el => {
             const { title, weight, kcal, id } = el;
             return (
               <li key={id} className="listItem">

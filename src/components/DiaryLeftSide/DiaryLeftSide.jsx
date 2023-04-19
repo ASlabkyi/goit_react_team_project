@@ -34,6 +34,8 @@ const DiaryLeftSide = () => {
   }
   const products = useSelector(selectProducts);
 
+  console.log(products.length);
+
   const [search, setSearch] = useState('');
   const [gram, setGram] = useState('');
   const [productId, setProductId] = useState(null);
@@ -98,15 +100,17 @@ const DiaryLeftSide = () => {
             >
               <label className="label labelProduct">
                 Enter product name
-                <div className="searchProducts">
-                  <ul>
-                    {products.map(el => (
-                      <li key={el._id} onClick={() => hanldeOnClik(el)}>
-                        {el.title.ua}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {products[0] && products.length < 958 && (
+                  <div className="searchProducts">
+                    <ul>
+                      {products.map(el => (
+                        <li key={el._id} onClick={() => hanldeOnClik(el)}>
+                          {el.title.ua}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 <input
                   onChange={handleChange}
                   type="text"
