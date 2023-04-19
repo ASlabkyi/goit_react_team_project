@@ -28,6 +28,8 @@ export default function DairyAddProductForm() {
   const products = useSelector(selectProducts);
   const date = moment(new Date()).format('yyyy-MM-DD');
 
+  console.log(products);
+
   useEffect(() => {
     if (title.length >= 2) dispatch(fetchProducts(title));
   }, [dispatch, title]);
@@ -125,6 +127,7 @@ export default function DairyAddProductForm() {
             }}
             variant="filled"
           />
+
           <ButtonStyled
             sx={{
               display: {
@@ -142,6 +145,17 @@ export default function DairyAddProductForm() {
             Add
           </ButtonStyled>
         </div>
+
+        <div>
+          <ul>
+            {products.map(product => (
+              <li>
+                <p>{product.title.ua}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <FabStyled aria-label="add" type={isMobile ? 'button' : 'submit'}>
           <AddIcon />
         </FabStyled>

@@ -8,6 +8,7 @@ import 'react-calendar/dist/Calendar.css';
 import DateAndCalendar from './DateAndCalendar';
 import ListOfProdacts from './ListOfProdacts';
 import { setSearchProduct, setAddProduct } from 'redux/product/operations';
+import { selectProducts } from 'redux/product/selectors';
 
 const DiaryLeftSide = () => {
   const isTablet = useMediaQuery('(min-width:768px) and (max-width:1279px)');
@@ -31,12 +32,13 @@ const DiaryLeftSide = () => {
     meinBoxPadding = '293px 120px 56px 16px';
     meinBoxMargin = '0px auto 0px auto';
   }
+  const products = useSelector(selectProducts);
 
   const [search, setSearch] = useState('');
   const [gram, setGram] = useState('');
+  const [productId, setProductId] = useState(null);
   const dispatch = useDispatch();
-  const productId = useSelector(state => state.product.products);
-  console.log(productId);
+  const date = useSelector(state => state.dayInfo.date?.date);
 
   const handleChange = e => {
     const value = e.target.value;
@@ -50,14 +52,20 @@ const DiaryLeftSide = () => {
     setGram(value);
   };
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   const product = {
-  //     productId: {ads},
-  //     weight: gram,
-  //     date,
-  //   };
-  // };
+  const handleSubmit = e => {
+    e.preventDefault();
+    const product = {
+      productId,
+      weight: gram,
+      date,
+    };
+    dispatch(setAddProduct(product));
+  };
+
+  const hanldeOnClik = product => {
+    setSearch(product.title.ua);
+    setProductId(product._id);
+  };
 
   useEffect(() => {
     dispatch(setSearchProduct(search));
@@ -86,15 +94,17 @@ const DiaryLeftSide = () => {
             <form
               style={{ display: 'contents' }}
               autoComplete="off"
-              // onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
             >
               <label className="label labelProduct">
                 Enter product name
                 <div className="searchProducts">
                   <ul>
-                    {/* {data.map(el => (
-                      <li key={nanoid()}>{el}</li>
-                    ))} */}
+                    {products.map(el => (
+                      <li key={el._id} onClick={() => hanldeOnClik(el)}>
+                        {el.title.ua}
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <input

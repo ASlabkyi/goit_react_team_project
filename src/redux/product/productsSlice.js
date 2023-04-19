@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setSearchProduct } from './operations';
+import { setSearchProduct, setAddProduct } from './operations';
 
 const initialState = {
   products: [],
@@ -24,6 +24,14 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       }),
+  // .addCase(setAddProduct.pending, state => {
+  //   state.isLoading = true;
+  //   state.error = null;
+  // })
+  // .addCase(setAddProduct.fulfilled, (state, { payload }) => {
+  //   // state.products = payload.day.eatenProducts;
+  //   state.isLoading = false;
+  // }),
 });
 
 export const productReducer = productsSlice;

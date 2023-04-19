@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { useDispatch } from 'react-redux';
+import { changeDate } from 'redux/dayInfo/dayInfoSlice';
 import { setFetchDay } from 'redux/dayInfo/operations';
 
 const DateAndCalendar = () => {
@@ -37,6 +38,7 @@ const DateAndCalendar = () => {
   useEffect(() => {
     const fetchFormatData = { date: value.toISOString().split('T')[0] };
     console.log(fetchFormatData); // "2023-04-18"
+    dispatch(changeDate(fetchFormatData));
     dispatch(setFetchDay(fetchFormatData));
   }, [dispatch, value]);
 

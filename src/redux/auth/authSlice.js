@@ -3,15 +3,7 @@ import { register, login, logout, refresh } from './operations';
 
 const initialState = {
   user: { username: null, email: null, userData: {}, id: '' },
-  todaySummary: {
-    date: null,
-    kcalLeft: null,
-    kcalConsumed: null,
-    dailyRate: null,
-    percentsOfDailyRate: null,
-    userId: null,
-    id: null,
-  },
+  todaySummary: {},
   token: null,
   isLoading: false,
   error: null,
