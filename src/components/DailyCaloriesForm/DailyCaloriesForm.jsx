@@ -167,6 +167,12 @@ const DailyCaloriesForm = () => {
     }
   };
 
+  console.log(typeof height);
+  console.log(typeof age);
+  console.log(typeof weight);
+  console.log(typeof desiredWeight);
+  console.log(typeof bloodType);
+
   return (
     <>
       <Box
