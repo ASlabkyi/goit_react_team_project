@@ -5,7 +5,7 @@ import { PublicRout } from './Publick/Publick';
 import { PrivateRout } from './PrivateRout/PrivateRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing, selectIsLoggedIn } from 'redux/auth/selectors';
-import { refresh } from 'redux/auth/operations';
+import { fetchGetUserInfo } from 'redux/auth/operations';
 
 const Calculator = lazy(() => import('../pages/Calculator/Calculator'));
 const Diary = lazy(() => import('../pages/Diary/Diary'));
@@ -17,27 +17,31 @@ export const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshng = useSelector(selectIsRefreshing);
+  const token = useSelector(state => state.auth.token);
 
   useEffect(() => {
-    dispatch(refresh());
-  }, [dispatch]);
+    if (!isLoggedIn && token) dispatch(fetchGetUserInfo());
+  }, [dispatch, isLoggedIn, token]);
 
-  return !isRefreshng ? (
-    <p>ads</p>
-  ) : (
+  // !isRefreshng ? (
+  //   <p>ads</p>
+  // ) : (
+  return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
 
         <Route
           path="/login"
-          element={<PublicRout redirectTo="/diary" component={<Login />} />}
+          element={
+            <PublicRout redirectTo="/calculator" component={<Login />} />
+          }
         />
 
         <Route
           path="/register"
           element={
-            <PublicRout redirectTo="/diary" component={<Registration />} />
+            <PublicRout redirectTo="/calculator" component={<Registration />} />
           }
         />
 
