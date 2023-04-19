@@ -1,23 +1,20 @@
 import { Box, useMediaQuery } from '@mui/material';
 import ButtonAdd from './buttonAdd';
 import DateAndCalendar from './DateAndCalendar';
-
-const data = [
-  {
-    title: 'Меланж яєчний',
-    weight: 100,
-    kcal: 157,
-    id: '9b1deb4d-3b7d-4bad-9bdd-2b0,dy7b3dcb6d',
-  },
-  {
-    title: 'Меланж яєчний',
-    weight: 100,
-    kcal: 157,
-    id: '9b1deb4d-3b7d-4bad-9bdd-2b0dy7b3dcb6d',
-  },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { setDeleteProduct } from 'redux/dayInfo/operations';
 
 const ListOfProdacts = () => {
+  const data = useSelector(state => state.dayInfo.eatenProducts);
+  const dayId = useSelector(state => state.dayInfo?.id);
+  const dispatch = useDispatch();
+
+  const handleDelete = id => {
+    const value = { dayId, eatenProductId: id };
+    console.log(value);
+    dispatch(setDeleteProduct(value));
+  };
+
   const isTablet = useMediaQuery('(min-width:768px) and (max-width:1279px)');
   const isDisktop = useMediaQuery('((min-width:1280px))');
 
@@ -117,7 +114,10 @@ const ListOfProdacts = () => {
                       {kcal} kcal
                     </Box>
                   </Box>
-                  <button className="buttoneDelite">
+                  <button
+                    className="buttoneDelite"
+                    onClick={() => handleDelete(id)}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="14"

@@ -39,3 +39,8 @@ export const addProduct = async product => {
   const res = await axios.post('/day', product);
   return res;
 };
+
+export const deleteProduct = async product => {
+  const { data } = await axios.delete('/day', { data: product });
+  return data;
+};
