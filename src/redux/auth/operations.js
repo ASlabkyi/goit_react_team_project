@@ -65,7 +65,6 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   token.set(refreshToken);
 
   try {
-    console.log(1);
     const { data } = await userRefresh({
       sid,
     });
