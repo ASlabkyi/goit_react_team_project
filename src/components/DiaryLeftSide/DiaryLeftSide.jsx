@@ -34,13 +34,13 @@ const DiaryLeftSide = () => {
   }
   const products = useSelector(selectProducts);
 
-  console.log(products.length);
-
   const [search, setSearch] = useState('');
   const [gram, setGram] = useState('');
   const [productId, setProductId] = useState(null);
   const dispatch = useDispatch();
   const date = useSelector(state => state.dayInfo.date?.date);
+
+  console.log(search);
 
   const handleChange = e => {
     const value = e.target.value;
@@ -100,7 +100,7 @@ const DiaryLeftSide = () => {
             >
               <label className="label labelProduct">
                 Enter product name
-                {products[0] && products.length < 958 && (
+                {products[0] && products.length < 958 && search.length > 1 && (
                   <div className="searchProducts">
                     <ul>
                       {products.map(el => (
