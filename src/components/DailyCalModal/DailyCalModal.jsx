@@ -20,7 +20,6 @@ export const DailyCalModal = ({ open, handleClose, dailyRate, notAllowedProducts
         padding: 0,
         
       };
-
       const iconStyle = {
         position: 'absolute',
         top: '20px',
