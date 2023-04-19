@@ -394,5 +394,4 @@ const DailyCaloriesForm = () => {
     </>
   );
 };
-
 export default DailyCaloriesForm;
