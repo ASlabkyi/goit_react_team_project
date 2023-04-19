@@ -130,7 +130,10 @@ const CalcRightSide = () => {
               {dailyRate1 ? `${dailyRate1}` : `000`} kcal
             </li>
             <li style={{ textAlign: 'right' }}>
-              {percentsOfDailyRate1 ? `${percentsOfDailyRate1}` : `000`} %
+              {percentsOfDailyRate1
+                ? `${Math.round(percentsOfDailyRate1)}`
+                : `000`}{' '}
+              %
             </li>
           </ul>
         </Box>

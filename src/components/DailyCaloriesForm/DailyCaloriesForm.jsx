@@ -40,13 +40,13 @@ const DailyCaloriesForm = () => {
   };
   const handleClose = () => setOpen(false);
 
-  const [height, setHeight] = useState(Number(''));
+  const [height, setHeight] = useState('');
   const [heightError, setHeightError] = useState('');
-  const [age, setAge] = useState(Number(''));
+  const [age, setAge] = useState('');
   const [ageError, setAgeError] = useState('');
-  const [weight, setWeight] = useState(Number(''));
+  const [weight, setWeight] = useState('');
   const [weightError, setWeightError] = useState('');
-  const [desiredWeight, setDesiredWeight] = useState(Number(''));
+  const [desiredWeight, setDesiredWeight] = useState('');
   const [desiredWeightError, setDesiredWeightError] = useState('');
   const [bloodType, setBloodType] = useState(Number(1));
   const [bloodTypeError, setBloodTypeError] = useState('');
