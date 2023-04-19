@@ -40,6 +40,8 @@ const DiaryLeftSide = () => {
   const dispatch = useDispatch();
   const date = useSelector(state => state.dayInfo.date?.date);
 
+  console.log(search);
+
   const handleChange = e => {
     const value = e.target.value;
 
@@ -60,6 +62,8 @@ const DiaryLeftSide = () => {
       date,
     };
     dispatch(setAddProduct(product));
+    setGram('');
+    setSearch('');
   };
 
   const hanldeOnClik = product => {
@@ -101,15 +105,17 @@ const DiaryLeftSide = () => {
             >
               <label className="label labelProduct">
                 Enter product name
-                <div className="searchProducts">
-                  <ul>
-                    {products.map(el => (
-                      <li key={el._id} onClick={() => hanldeOnClik(el)}>
-                        {el.title.ua}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {products[0] && products.length < 958 && search.length > 1 && (
+                  <div className="searchProducts">
+                    <ul>
+                      {products.map(el => (
+                        <li key={el._id} onClick={() => hanldeOnClik(el)}>
+                          {el.title.ua}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 <input
                   onChange={handleChange}
                   type="text"

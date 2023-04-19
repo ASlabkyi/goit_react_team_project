@@ -68,7 +68,9 @@
   position: absolute;
   top: 42px;
   z-index: 10;
-  background-color: aqua;
+  border: solid gray;
+  background-color: white;
+  border-radius: 4px;
   overflow-y: scroll;
 
   width: 240px;
