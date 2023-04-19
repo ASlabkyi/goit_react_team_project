@@ -10,9 +10,16 @@ const CalcRightSide = () => {
   const notRecomended = useSelector(
     state => state.dailyRate.notAllowedProducts
   );
-  const dailyRate = useSelector(state => state.dailyRate.dailyRate?.dailyRate);
+  console.log(notRecomended[0]);
 
-  let notRecommendedFood = false;
+  const kcalLeft1 = useSelector(state => state.dayInfo.daySummary?.kcalLeft);
+  const kcalConsumed1 = useSelector(
+    state => state.dayInfo.daySummary?.kcalConsumed
+  );
+  const dailyRate1 = useSelector(state => state.dayInfo.daySummary?.dailyRate);
+  const percentsOfDailyRate1 = useSelector(
+    state => state.dayInfo.daySummary?.percentsOfDailyRate
+  );
 
   let mainFlexDirection = 'column';
   let mainWidth = '320px';
@@ -113,12 +120,18 @@ const CalcRightSide = () => {
             <li>n% of normal</li>
           </ul>
           <ul>
-            <li style={{ textAlign: 'right' }}>000 kcal</li>
-            <li style={{ textAlign: 'right' }}>000 kcal</li>
             <li style={{ textAlign: 'right' }}>
-              {dailyRate ? `${dailyRate}` : `000`} kcal
+              {kcalLeft1 ? `${kcalLeft1}` : `000`} kcal
             </li>
-            <li style={{ textAlign: 'right' }}>000 %</li>
+            <li style={{ textAlign: 'right' }}>
+              {kcalConsumed1 ? `${kcalConsumed1}` : `000`} kcal
+            </li>
+            <li style={{ textAlign: 'right' }}>
+              {dailyRate1 ? `${dailyRate1}` : `000`} kcal
+            </li>
+            <li style={{ textAlign: 'right' }}>
+              {percentsOfDailyRate1 ? `${percentsOfDailyRate1}` : `000`} %
+            </li>
           </ul>
         </Box>
       </Box>
@@ -144,7 +157,7 @@ const CalcRightSide = () => {
             color: 'var(--gray-text-color)',
           }}
         >
-          {notRecomended.lenght > 0 ? (
+          {notRecomended[0] ? (
             <ul>
               {notRecomended.slice(0, 5).map(el => (
                 <li key={nanoid()}>{el}</li>
