@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchProducts, addProduct } from './operations';
+import { setSearchProduct } from './operations';
 
 const initialState = {
   products: [],
@@ -10,33 +10,20 @@ const initialState = {
 const productsSlice = createSlice({
   name: 'product',
   initialState,
-  extraReducers: {
-    [fetchProducts.pending](state, action) {
-      state.isLoading = true;
-    },
-
-    [fetchProducts.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.products = action.payload;
-    },
-    [fetchProducts.rejected](state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-    [addProduct.fulfilled](state, action) {
-      state.dayInfo = action.payload.day;
-      state.isLoading = false;
-    },
-    [addProduct.pending](state) {
-      state.error = null;
-      state.isLoading = true;
-    },
-    [addProduct.rejected](state, action) {
-      state.error = action.payload;
-      state.isLoading = false;
-    },
-  },
+  extraReducers: builder =>
+    builder
+      .addCase(setSearchProduct.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(setSearchProduct.fulfilled, (state, { payload }) => {
+        state.products = payload;
+        state.isLoading = false;
+      })
+      .addCase(setSearchProduct.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      }),
 });
 
-export const productReducer = productsSlice.reducer;
+export const productReducer = productsSlice;

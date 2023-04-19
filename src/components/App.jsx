@@ -22,11 +22,9 @@ export const App = () => {
     dispatch(refresh());
   }, [dispatch]);
 
-  return (
-    // !isRefreshng ? (
-    //   <p>ads</p>
-    // ) :
-
+  return !isRefreshng ? (
+    <p>ads</p>
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
