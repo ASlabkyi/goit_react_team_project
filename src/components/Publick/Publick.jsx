@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 export const PublicRout = ({ component: Component, redirectTo = '/' }) => {
-  const isLogin = useSelector(selectIsLoggedIn);
+  // const isLogin = useSelector(selectIsLoggedIn);
+  const token = useSelector(state => state.auth.token);
 
-  return isLogin ? <Navigate to={redirectTo} /> : Component;
+  return token ? <Navigate to={redirectTo} /> : Component;
 };

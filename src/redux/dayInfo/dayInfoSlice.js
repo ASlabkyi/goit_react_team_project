@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { setFetchDay } from './operations';
 import { setAddProduct } from 'redux/product/operations';
 import { setDeleteProduct } from './operations';
+import { fetchGetUserInfo } from 'redux/auth/operations';
 
 export const dayInfoSlice = createSlice({
   name: 'dayInfo',
@@ -12,6 +13,7 @@ export const dayInfoSlice = createSlice({
     daySummary: null,
     isLoading: false,
     error: null,
+    days: null,
   },
   reducers: {
     changeDate: (state, action) => {
@@ -58,6 +60,9 @@ export const dayInfoSlice = createSlice({
           product => product.id !== payload.id
         );
         state.eatenProducts = newProducts;
+      })
+      .addCase(fetchGetUserInfo.fulfilled, (state, { payload }) => {
+        state.days = payload.days;
       }),
 });
 

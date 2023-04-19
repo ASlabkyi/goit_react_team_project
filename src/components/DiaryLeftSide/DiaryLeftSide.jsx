@@ -68,6 +68,9 @@ const DiaryLeftSide = () => {
   };
 
   useEffect(() => {
+    if (!search) {
+      return;
+    }
     dispatch(setSearchProduct(search));
   }, [dispatch, search]);
 

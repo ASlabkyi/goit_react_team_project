@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, refresh } from './operations';
+import { register, login, logout, fetchGetUserInfo } from './operations';
 
 const initialState = {
   user: { username: null, email: null, userData: {}, id: '' },
-  todaySummary: {},
+  // todaySummary: {},
   token: null,
   isLoading: false,
   error: null,
@@ -20,7 +20,7 @@ export const authSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user.username = action.payload.user.username;
         state.token = action.payload.accessToken;
         state.sid = action.payload.sid;
         state.refreshToken = action.payload.refreshToken;
@@ -36,27 +36,40 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.user = { username: null, email: null, userData: {} };
-        // state.isRefreshing = false;
         state.token = null;
         state.sid = null;
         state.refreshToken = null;
         state.isLoggedIn = false;
       })
-      .addCase(refresh.pending, state => {
-        state.isRefreshing = true;
-        state.isLoading = true;
+      .addCase(fetchGetUserInfo.pending, state => {
         state.error = null;
+        state.isLoading = true;
       })
-      .addCase(refresh.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        // state.user = payload.user;
-        state.isLoggedIn = true;
-        state.token = payload.newAccessToken;
-        state.sid = payload.sid;
-        state.refreshToken = payload.newRefreshToken;
+      .addCase(fetchGetUserInfo.fulfilled, (state, { payload }) => {
+        state.isRefreshing = true;
         state.isLoading = false;
-        state.isRefreshing = false;
+        state.user.username = payload.username;
+        state.user.email = payload.email;
+        state.user.id = payload.id;
+        state.user.userData = payload.userData;
+      })
+      .addCase(fetchGetUserInfo.rejected, state => {
+        state = initialState;
       }),
 });
 
 export const authReducer = authSlice.reducer;
+
+// .addCase(refresh.pending, state => {
+//   state.isRefreshing = true;
+//   state.isLoading = true;
+//   state.error = null;
+// })
+// .addCase(refresh.fulfilled, (state, { payload }) => {
+//   state.isLoggedIn = true;
+//   state.token = payload.newAccessToken;
+//   state.sid = payload.sid;
+//   state.refreshToken = payload.newRefreshToken;
+//   state.isLoading = false;
+//   state.isRefreshing = false;
+// }),

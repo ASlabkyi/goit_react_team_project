@@ -57,62 +57,46 @@ export const logout = createAsyncThunk(
   }
 );
 
-export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-  const { refreshToken, sid } = thunkAPI.getState().auth;
-  if (!refreshToken || !sid) {
-    return thunkAPI.rejectWithValue();
-  }
-  token.set(refreshToken);
-
-  try {
-    const { data } = await userRefresh({
-      sid,
-    });
-
-    token.set(data.newAccessToken);
-    const user = await userGetInfo();
-
-    thunkAPI.dispatch(userGetInfo());
-
-    return {
-      user: user.username,
-      sid: data.sid,
-      newRefreshToken: data.newRefreshtoken,
-      newAccessToken: data.newAccessToken,
-    };
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-// export const fetchCurrentUser = createAsyncThunk(
-//   'user/info',
-//   async (_, { getState, rejectWithValue }) => {
-//     const state = getState();
-//     const persistedToken = state.auth.accessToken;
-
-//     if (persistedToken === null) {
-//       return rejectWithValue();
-//     }
-//     try {
-//       token.set(persistedToken);
-//       const { data } = await axios.get('/user');
-//       return data;
-//     } catch (error) {
-//       if (error.response.status === 401) {
-//         try {
-//           const persistedSessionId = { sid: state.auth.sessionId };
-//           console.log(persistedSessionId);
-//           token.set(state.auth.refreshToken);
-//           const refresh = await axios.post('/auth/refresh', persistedSessionId);
-//           token.set(refresh.data.newAccessToken);
-//           const { data } = await axios.get('/user');
-//           return { data: data, refresh: refresh.data };
-//         } catch (err) {
-//           return rejectWithValue(err.message);
-//         }
-//       }
-//       console.log(error.response.status);
-//     }
+// export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+//   const { refreshToken, sid } = thunkAPI.getState().auth;
+//   if (!refreshToken || !sid) {
+//     return thunkAPI.rejectWithValue();
 //   }
-// );
+//   token.set(refreshToken);
+
+//   try {
+//     const { data } = await userRefresh({
+//       sid,
+//     });
+
+//     token.set(data.newAccessToken);
+//     const user = await userGetInfo();
+
+//     thunkAPI.dispatch(userGetInfo());
+
+//     return {
+//       user: user.username,
+//       sid: data.sid,
+//       newRefreshToken: data.newRefreshtoken,
+//       newAccessToken: data.newAccessToken,
+//     };
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
+
+export const fetchGetUserInfo = createAsyncThunk(
+  '/user',
+  async (_, thunkAPI) => {
+    const { token: newToken } = thunkAPI.getState().auth;
+    token.set(newToken);
+
+    try {
+      const res = await userGetInfo();
+      return res;
+    } catch (error) {
+      token.unset(newToken);
+      return thunkAPI.rejectWithValue(error.massage);
+    }
+  }
+);
