@@ -56,7 +56,7 @@ const DailyCaloriesForm = () => {
     const input = event.target.value;
     const regex = /^\d*\.?\d*$/;
     if (regex.test(input)) {
-      setHeight(parseInt(input));
+      setHeight(Number(input));
       setHeightError('');
     } else {
       setHeightError('Please enter a valid number, on example "173"');
@@ -67,7 +67,7 @@ const DailyCaloriesForm = () => {
     const input = event.target.value;
     const regex = /^\d+$/;
     if (regex.test(input)) {
-      setAge(parseInt(input));
+      setAge(Number(input));
       setAgeError('');
     } else {
       setAgeError('Please enter a valid number, on example "30"');
@@ -78,7 +78,7 @@ const DailyCaloriesForm = () => {
     const input = event.target.value;
     const regex = /^\d*\.?\d*$/;
     if (regex.test(input)) {
-      setWeight(parseInt(input));
+      setWeight(Number(input));
       setWeightError('');
     } else {
       setWeightError('Please enter a valid number, on example "70"');
@@ -89,7 +89,7 @@ const DailyCaloriesForm = () => {
     const input = event.target.value;
     const regex = /^\d*\.?\d*$/;
     if (regex.test(input)) {
-      setDesiredWeight(parseInt(input));
+      setDesiredWeight(Number(input));
       setDesiredWeightError('');
     } else {
       setDesiredWeightError('Please enter a valid number, on example "65"');
