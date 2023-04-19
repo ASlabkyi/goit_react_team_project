@@ -3,11 +3,11 @@ import ButtonAdd from './buttonAdd';
 import './DiaryLeftSide.css';
 
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import 'react-calendar/dist/Calendar.css';
 import DateAndCalendar from './DateAndCalendar';
 import ListOfProdacts from './ListOfProdacts';
-import { setSearchProduct } from 'redux/product/operations';
+import { setSearchProduct, setAddProduct } from 'redux/product/operations';
 
 const DiaryLeftSide = () => {
   const isTablet = useMediaQuery('(min-width:768px) and (max-width:1279px)');
@@ -33,13 +33,31 @@ const DiaryLeftSide = () => {
   }
 
   const [search, setSearch] = useState('');
+  const [gram, setGram] = useState('');
   const dispatch = useDispatch();
+  const productId = useSelector(state => state.product.products);
+  console.log(productId);
 
   const handleChange = e => {
     const value = e.target.value;
 
     setSearch(value);
   };
+
+  const handleChangeGram = e => {
+    const value = e.target.value;
+
+    setGram(value);
+  };
+
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   const product = {
+  //     productId: {ads},
+  //     weight: gram,
+  //     date,
+  //   };
+  // };
 
   useEffect(() => {
     dispatch(setSearchProduct(search));
@@ -92,10 +110,10 @@ const DiaryLeftSide = () => {
               <label className="label labelGrams">
                 Grams
                 <input
-                  // onChange={handleChangeWeight}
+                  onChange={handleChangeGram}
                   type="number"
                   name="weight"
-                  // value={weight}
+                  value={gram}
                   required
                   className="input"
                 />
