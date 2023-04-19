@@ -5,7 +5,6 @@ import { Modal, Box, Typography, Button, List, ListItem, ListItemText } from '@m
 import { styled } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
 
-
 export const DailyCalModal = ({ open, handleClose, dailyRate, notAllowedProducts }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
