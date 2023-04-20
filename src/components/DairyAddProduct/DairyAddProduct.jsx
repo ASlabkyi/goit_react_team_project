@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts, addProduct } from 'redux/product/operations';
 import { selectProducts } from 'redux/product/selectors';
@@ -24,7 +24,7 @@ export default function DairyAddProductForm() {
   const isMobile = useMediaQuery('(max-width:767px)');
   const [weight, setWeight] = useState('');
   const [title, setTitle] = useState('');
-  const [choosenProduct, setChoosenProduct] = useState(null);
+
   const products = useSelector(selectProducts);
   const date = moment(new Date()).format('yyyy-MM-DD');
 
@@ -60,8 +60,6 @@ export default function DairyAddProductForm() {
     dispatch(addProduct(newProduct));
     reset();
   };
-
-  const hanldeOnClik = e => {};
 
   return (
     <>

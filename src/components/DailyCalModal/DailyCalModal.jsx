@@ -43,8 +43,8 @@ export const DailyCalModal = ({
   const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
   }));
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
+  const [dense] = React.useState(false);
+
   const notAllowedProductsArray = Array.from(notAllowedProducts);
 
   const generate = () => {

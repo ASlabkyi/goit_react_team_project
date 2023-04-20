@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { userRefresh, userGetInfo } from 'API';
+import { userGetInfo } from 'API';
 
 axios.defaults.baseURL = process.env.REACT_APP_URL;
 
