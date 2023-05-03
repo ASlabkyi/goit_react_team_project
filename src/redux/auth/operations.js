@@ -57,34 +57,6 @@ export const logout = createAsyncThunk(
   }
 );
 
-// export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-//   const { refreshToken, sid } = thunkAPI.getState().auth;
-//   if (!refreshToken || !sid) {
-//     return thunkAPI.rejectWithValue();
-//   }
-//   token.set(refreshToken);
-
-//   try {
-//     const { data } = await userRefresh({
-//       sid,
-//     });
-
-//     token.set(data.newAccessToken);
-//     const user = await userGetInfo();
-
-//     thunkAPI.dispatch(userGetInfo());
-
-//     return {
-//       user: user.username,
-//       sid: data.sid,
-//       newRefreshToken: data.newRefreshtoken,
-//       newAccessToken: data.newAccessToken,
-//     };
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
-
 export const fetchGetUserInfo = createAsyncThunk(
   '/user',
   async (_, thunkAPI) => {
